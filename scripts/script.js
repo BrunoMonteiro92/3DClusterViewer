@@ -233,6 +233,7 @@ function update() {
 	// run the render loop
 	engine.runRenderLoop(function() {
 		scene.render();
+		stats.update();
 	});
 
 	// the canvas/window resize event handler
