@@ -221,7 +221,7 @@ function update() {
 		}
 		
 		var axis = new showAxis(scene);
-		//showGrid(1000);
+		showGrid(1000);
 		drawCluster(matrix);
 
 		initGui(axis);
