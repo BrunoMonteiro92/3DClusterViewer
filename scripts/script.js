@@ -19,16 +19,13 @@ function readSingleFile(evt) {
 					if (vals.length > 2) {
 						matrix.push(vals);
 					}
-
 				}
 				if (line.trim() === keyWord) {
 					pastKey = true;
 				}
-
 			})
 			update();
 		}
-
 		r.readAsText(f);
 	} else {
 		alert("Failed");
@@ -51,7 +48,6 @@ function update() {
 	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
 	BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 		// Compute
-
 		var cosa = Math.cos(this.alpha);
 		var sina = Math.sin(this.alpha);
 		var cosb = Math.cos(this.beta);
