@@ -1,9 +1,9 @@
 // variaveis
 var matrix = [];
 var keyWord = '[ARESTAS]';
-
 var stats;
 
+//Função para ler o arquivo
 function readSingleFile(evt) {
 	var f = evt.target.files[0];
 
@@ -18,7 +18,6 @@ function readSingleFile(evt) {
 					var vals = line.trim().split(' ');
 					if (vals.length > 2) {
 						matrix.push(vals);
-						console.log(matrix);
 					}
 
 				}
@@ -27,7 +26,6 @@ function readSingleFile(evt) {
 				}
 
 			})
-			//document.getElementById("matriz").textContent = "" + matrix[0][0];
 			update();
 		}
 
@@ -37,20 +35,20 @@ function readSingleFile(evt) {
 	}
 }
 
-document.getElementById('fileinput').addEventListener('change',
-		readSingleFile, false);
+document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 
-//-----------------------------------------------------------------------------------------------------------------------
 window.addEventListener('DOMContentLoaded', function() {
 	update();
 });
+
 function update() {
 	// get the canvas DOM element
 	var canvas = document.getElementById('renderCanvas');
 
 	// load the 3D engine
 	var engine = new BABYLON.Engine(canvas, true);
-
+	
+	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
 	BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 		// Compute
 
@@ -62,6 +60,7 @@ function update() {
 		if (sinb === 0) {
 			sinb = 0.0001;
 		}
+		
 		var target = this._getTargetPosition();
 		target.addToRef(new BABYLON.Vector3(this.radius * cosa * sinb,
 				this.radius * cosb, this.radius * sina * sinb),
@@ -102,7 +101,7 @@ function update() {
 		return this._viewMatrix;
 	};
 
-	// createScene function that creates and return the scene
+	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
 		//Cria a cena
 		var scene = new BABYLON.Scene(engine);
@@ -120,24 +119,24 @@ function update() {
 		//Cria a iluminação apontando para 0, 1, 0 (vindo do eixo y)
 		var light = new BABYLON.HemisphericLight('light1',
 				camera.position, scene);
-
-
+		
+		//Desenha os clusters
 		var drawCluster = function(matrix) {
 			for (var i = 0; i < matrix.length; i++) {
-				//seta a cor dos objetos
+				//Seta a cor dos objetos
 				var matObjects = new BABYLON.StandardMaterial(
 						"matObjects", scene);
 				matObjects.diffuseColor = new BABYLON.Color3(
 						matrix[i][6], matrix[i][7], matrix[i][8]);
 
-				//desenha a esfera da ponta
+				//Desenha a esfera da ponta
 				var sphereVertice = BABYLON.Mesh.CreateSphere(
 						"sphereVertice", 20, 5, scene);
 				sphereVertice.position = new BABYLON.Vector3(
 						matrix[i][0], matrix[i][1], matrix[i][2]);
 				sphereVertice.material = matObjects;
 
-				//desenha o centro do cluster
+				//Desenha o centro do cluster
 				var sphereCentro = BABYLON.Mesh.CreateSphere(
 						"sphereCentro", 20, 5, scene);
 				sphereCentro.position = new BABYLON.Vector3(
@@ -161,7 +160,7 @@ function update() {
 				//Seta a posição do cilindro para a primeira esfera
 				cylinder.position = sphereCentro.position;
 
-				// Encontra e calcula o vetor entre as esferas
+				//Encontra e calcula o vetor entre as esferas
 				var v1 = vend.subtract(vstart);
 				v1.normalize();
 				var v2 = new BABYLON.Vector3(0, 1, 0);
@@ -170,7 +169,7 @@ function update() {
 				var axis = BABYLON.Vector3.Cross(v2, v1);
 				axis.normalize();
 
-				// Angulo entre os vetores
+				//Angulo entre os vetores
 				var angle = BABYLON.Vector3.Dot(v1, v2);
 				angle = Math.acos(angle);
 
@@ -184,21 +183,27 @@ function update() {
 		var grid = new generateGrid(scene);
 		drawCluster(matrix);
 
+		//Inicializa o dat.GUI
 		initGui(axis, grid);
-		//---------  Stats  ------------    
+		
+		//Inicializa o Stats    
 		stats = new Stats();
 		stats.setMode( 1 );
 		document.body.appendChild( stats.domElement );
 
-		//---------  Fim do Stats  -----
-
+		//Retorna a cena
 		return scene;
 	}
-
+	
+	//Função do dat.GUI
 	var initGui = function(axis, grid){
+		//Inicia
 		var gui = new dat.GUI();
+		//Cria uma pasta
 		var folder = gui.addFolder('Axis options');
+		//Mantem a pasta aberta no inicio
 		folder.open();
+		//Adiciona à pasta as opções
 		folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
 			axis.updateAxis();
 		});
@@ -212,9 +217,11 @@ function update() {
 			axis.showAxisZ();
 		});
 
-
+		//Cria outra pasta
 		folder = gui.addFolder('Plane options');
+		//Mantem a pasta aberta no inicio
 		folder.open();
+		//Adiciona à pasta as opções
 		folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
 			grid.updateGrid();
 		});
@@ -229,16 +236,16 @@ function update() {
 		});
 	}
 	
-	// call the createScene function
+	//Chama função que cria a cena
 	var scene = createScene();
 
-	// run the render loop
+	//Roda o loop de renderização
 	engine.runRenderLoop(function() {
 		scene.render();
 		stats.update();
 	});
 
-	// the canvas/window resize event handler
+	//A janela/canvas faz um resize dependendo do tamanho da tela
 	window.addEventListener('resize', function() {
 		engine.resize();
 	});
