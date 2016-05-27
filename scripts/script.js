@@ -42,7 +42,6 @@ document.getElementById('fileinput').addEventListener('change',
 window.addEventListener('DOMContentLoaded', function() {
 	update();
 });
-
 function update() {
 	// get the canvas DOM element
 	var canvas = document.getElementById('renderCanvas');
@@ -120,6 +119,7 @@ function update() {
 		var light = new BABYLON.HemisphericLight('light1',
 				camera.position, scene);
 
+
 		var drawCluster = function(matrix) {
 			for (var i = 0; i < matrix.length; i++) {
 				//seta a cor dos objetos
@@ -194,29 +194,29 @@ function update() {
 			axis.updateAxis();
 		});
 		folder.add(axis, 'displayAxisX').name("Show axis X").onChange(function(){
-			axis.showAxisX(scene);
+			axis.showAxisX();
 		});
 		folder.add(axis, 'displayAxisY').name("Show axis Y").onChange(function(){
-			axis.showAxisY(scene);
+			axis.showAxisY();
 		});
 		folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
-			axis.showAxisZ(scene);
+			axis.showAxisZ();
 		});
 
 
-		folder = gui.addFolder('Grid options');
+		folder = gui.addFolder('Plane options');
 		folder.open();
 		folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
 			grid.updateGrid();
 		});
 		folder.add(grid, 'displayGroundXZ').name('Show XZ plane').onChange(function(){
-			grid.showGroundXZ(scene);
+			grid.showGroundXZ();
 		});
 		folder.add(grid, 'displayGroundYZ').name('Show YZ plane').onChange(function(){
-			grid.showGroundYZ(scene);
+			grid.showGroundYZ();
 		});
 		folder.add(grid, 'displayGroundXY').name('Show XY plane').onChange(function(){
-			grid.showGroundXY(scene);
+			grid.showGroundXY();
 		});
 	}
 
