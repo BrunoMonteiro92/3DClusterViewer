@@ -120,18 +120,6 @@ function update() {
 		var light = new BABYLON.HemisphericLight('light1',
 				camera.position, scene);
 
-		var makeTextPlane = function(text, color) {
-			var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 512, scene, true);
-			dynamicTexture.hasAlpha = true;
-			dynamicTexture.drawText(text, null, 256, "20px Arial", color , "transparent", true);
-			var plane = new BABYLON.Mesh.CreatePlane("TextPlane",  40, scene, true);
-			plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
-			plane.material.backFaceCulling = false;
-			plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-			plane.material.diffuseTexture = dynamicTexture;
-			return plane;
-		};
-
 		var drawCluster = function(matrix) {
 			for (var i = 0; i < matrix.length; i++) {
 				//seta a cor dos objetos
@@ -146,12 +134,6 @@ function update() {
 				sphereVertice.position = new BABYLON.Vector3(
 						matrix[i][0], matrix[i][1], matrix[i][2]);
 				sphereVertice.material = matObjects;
-
-				var posSphere = new makeTextPlane(sphereVertice.position.x, "red");
-				posSphere.position.x = sphereVertice.position.x;
-				posSphere.position.y = parseFloat(sphereVertice.position.y) + 6;
-				posSphere.position.z = sphereVertice.position.z;
-				console.log(posSphere.position.y);
 
 				//desenha o centro do cluster
 				var sphereCentro = BABYLON.Mesh.CreateSphere(
