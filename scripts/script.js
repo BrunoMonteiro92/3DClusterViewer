@@ -2,6 +2,8 @@
 var matrix = [];
 var keyWord = '[ARESTAS]';
 
+var stats;
+
 function readSingleFile(evt) {
 	var f = evt.target.files[0];
 
@@ -184,7 +186,7 @@ function update() {
 
 		initGui(axis, grid);
 		//---------  Stats  ------------    
-		var stats = new Stats();
+		stats = new Stats();
 		stats.setMode( 1 );
 		document.body.appendChild( stats.domElement );
 
