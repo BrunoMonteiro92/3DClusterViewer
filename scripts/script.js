@@ -196,7 +196,7 @@ function update() {
 			}
 		}
 		
-		var axis = new showAxis(scene);
+		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
 		drawCluster(matrix);
 
