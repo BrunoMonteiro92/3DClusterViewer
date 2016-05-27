@@ -195,43 +195,27 @@ function update() {
 						.RotationAxis(axis, angle);
 			}
 		}
-
-		//Instancia o material (textura) que os planos (grids) vão ter *Nota do B2: Isso é uma extensão do Babylon, eu chamei lá em cima junto com ele -> babylon.gridMaterial.min.js
-		var groundMaterial = new BABYLON.GridMaterial("groundMaterial",
-				scene);
-		groundMaterial.gridRatio = 1;
-		groundMaterial.backFaceCulling = false;
-		groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
-		groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
-		groundMaterial.opacity = 0.9;
-
-		var showGrid = function(size) {
-			//Cria os três planos e seta o material para ser grid (como se fosse uma textura)
-			var groundXZ = BABYLON.Mesh.CreateGround("groundXZ", size,
-					size, 2, scene);
-			groundXZ.material = groundMaterial;
-			var groundYZ = BABYLON.Mesh.CreateGround("groundYZ", size,
-					size, 2, scene);
-			groundYZ.material = groundMaterial;
-			groundYZ.rotation.z = Math.PI / 2;
-			var groundXY = BABYLON.Mesh.CreateGround("groundXY", size,
-					size, 2, scene);
-			groundXY.material = groundMaterial;
-			groundXY.rotation.x = -Math.PI / 2;
-		}
 		
 		var axis = new showAxis(scene);
-		showGrid(1000);
+		var grid = new generateGrid(scene);
 		drawCluster(matrix);
 
-		initGui(axis);
+		initGui(axis, grid);
 		return scene;
 	}
 
-	var initGui = function(axis){
+	var initGui = function(axis, grid){
 		var gui = new dat.GUI();
-		gui.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
+		var folder = gui.addFolder('Axis options');
+		folder.open();
+		folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
 			axis.updateAxis();
+		});
+
+		folder = gui.addFolder('Grid options');
+		folder.open();
+		folder.add(grid, 'size', 20, 2000).name("Grid size").step(20).onChange(function(){
+			grid.updateGrid();
 		});
 	}
 
