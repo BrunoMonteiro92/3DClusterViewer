@@ -22,7 +22,7 @@ showAxis = function(scene){
 };
 
 showAxis.prototype.updateAxis = function() {
-	this.axisX.scaling.x = this.size/10;
-	this.axisY.scaling.y = this.size/10;
-	this.axisZ.scaling.z = this.size/10;
+	this.axisX.scaling.x = this.size/100;
+	this.axisY.scaling.y = this.size/100;
+	this.axisZ.scaling.z = this.size/100;
 };
