@@ -1,12 +1,15 @@
-generateGrid = function(scene){
+//Classe que gera os planos (grids) XZ, XY, YZ
 
+//Construtor
+generateGrid = function(scene){
+	//Parâmetros para serem usados nos métodos
 	this.size = 200;
 	this.displayGroundXZ = true;
 	this.displayGroundYZ = true;
 	this.displayGroundXY = true;
-
 	this.scene = scene;
 	
+	//Instancia o material (textura) dos planos para ser um grid (GridMaterial é uma extensão do Babylon)
 	this.groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
 	this.groundMaterial.gridRatio = 1;
 	this.groundMaterial.backFaceCulling = false;
@@ -28,12 +31,14 @@ generateGrid = function(scene){
 	this.groundXY.rotation.x = -Math.PI / 2;
 };
 
+//Métod para aumentar e diminuir o tamanho dos planos, usado no dat.GUI
 generateGrid.prototype.updateGrid = function() {
 	this.groundXZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 };
 
+//Métod para exibir ou não o plano XZ, usado no dat.GUI
 generateGrid.prototype.showGroundXZ = function() {
 	if (this.displayGroundXZ == false)
 		this.groundXZ.dispose();
@@ -45,6 +50,7 @@ generateGrid.prototype.showGroundXZ = function() {
 	}
 };
 
+//Métod para exibir ou não o plano YZ, usado no dat.GUI
 generateGrid.prototype.showGroundYZ = function() {
 	if (this.displayGroundYZ == false)
 		this.groundYZ.dispose();
@@ -57,6 +63,7 @@ generateGrid.prototype.showGroundYZ = function() {
 	}
 };
 
+//Métod para exibir ou não o plano XY, usado no dat.GUI
 generateGrid.prototype.showGroundXY = function() {
 	if (this.displayGroundXY == false)
 		this.groundXY.dispose();
