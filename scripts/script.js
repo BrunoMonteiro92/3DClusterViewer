@@ -183,6 +183,13 @@ function update() {
 		drawCluster(matrix);
 
 		initGui(axis, grid);
+		//---------  Stats  ------------    
+		var stats = new Stats();
+		stats.setMode( 1 );
+		document.body.appendChild( stats.domElement );
+
+		//---------  Fim do Stats  -----
+
 		return scene;
 	}
 
@@ -219,7 +226,7 @@ function update() {
 			grid.showGroundXY();
 		});
 	}
-
+	
 	// call the createScene function
 	var scene = createScene();
 
