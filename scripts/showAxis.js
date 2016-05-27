@@ -25,5 +25,5 @@ showAxis.prototype.updateAxis = function() {
 	this.axisX.scaling.x = this.size/100;
 	this.axisY.scaling.y = this.size/100;
 	this.axisZ.scaling.z = this.size/100;
-	console.log(this.axisX.scaling.x);
+	console.log(axisX.scaling.x);
 };
