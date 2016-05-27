@@ -211,11 +211,30 @@ function update() {
 		folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
 			axis.updateAxis();
 		});
+		folder.add(axis, 'displayAxisX').name("Show axis X").onChange(function(){
+			axis.showAxisX(scene);
+		});
+		folder.add(axis, 'displayAxisY').name("Show axis Y").onChange(function(){
+			axis.showAxisY(scene);
+		});
+		folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
+			axis.showAxisZ(scene);
+		});
+
 
 		folder = gui.addFolder('Grid options');
 		folder.open();
-		folder.add(grid, 'size', 20, 2000).name("Grid size").step(20).onChange(function(){
+		folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
 			grid.updateGrid();
+		});
+		folder.add(grid, 'displayGroundXZ').name('Show XZ plane').onChange(function(){
+			grid.showGroundXZ(scene);
+		});
+		folder.add(grid, 'displayGroundYZ').name('Show YZ plane').onChange(function(){
+			grid.showGroundYZ(scene);
+		});
+		folder.add(grid, 'displayGroundXY').name('Show XY plane').onChange(function(){
+			grid.showGroundXY(scene);
 		});
 	}
 
