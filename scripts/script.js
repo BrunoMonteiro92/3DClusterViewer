@@ -1,4 +1,5 @@
 // variaveis
+var matrix;
 var keyWord = '[ARESTAS]';
 var stats;
 
@@ -7,7 +8,7 @@ function readSingleFile(evt) {
 	var f = evt.target.files[0];
 
 	if (f) {
-		var matrix = [];
+		matrix = [];
 		var r = new FileReader();
 		var contents = 'empty';
 		r.onload = function(e) {
