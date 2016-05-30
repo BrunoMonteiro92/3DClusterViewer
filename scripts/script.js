@@ -1,4 +1,5 @@
 // variaveis
+var matrix;
 var keyWord = '[ARESTAS]';
 var stats;
 
@@ -7,7 +8,7 @@ function readSingleFile(evt) {
 	var f = evt.target.files[0];
 
 	if (f) {
-		var matrix = [];
+		matrix = [];
 		var r = new FileReader();
 		var contents = 'empty';
 		r.onload = function(e) {
@@ -117,7 +118,7 @@ function update() {
 				camera.position, scene);
 		
 		//Desenha os clusters
-		var drawCluster = function() {
+		var drawCluster = function(matrix) {
 			for (var i = 0; i < matrix.length; i++) {
 				//Seta a cor dos objetos
 				var matObjects = new BABYLON.StandardMaterial(
@@ -177,7 +178,7 @@ function update() {
 		
 		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
-		drawCluster();
+		drawCluster(matrix);
 
 		//Inicializa o dat.GUI
 		initGui(axis, grid);
