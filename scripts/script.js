@@ -1,5 +1,5 @@
 // variaveis
-var matrix;
+var matrix = [];
 var keyWord = '[ARESTAS]';
 var stats;
 
