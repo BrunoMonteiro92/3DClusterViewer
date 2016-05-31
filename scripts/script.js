@@ -2,6 +2,7 @@
 var matrix = [];
 var keyWord = '[ARESTAS]';
 var stats;
+var gui;
 
 //Função para ler o arquivo
 function readSingleFile(evt) {
@@ -194,8 +195,10 @@ function update() {
 	
 	//Função do dat.GUI
 	var initGui = function(axis, grid){
+		if (gui)
+			gui.destroy();
 		//Inicia
-		var gui = new dat.GUI();
+		gui = new dat.GUI();
 		//Cria uma pasta
 		var folder = gui.addFolder('Axis options');
 		//Mantem a pasta aberta no inicio
