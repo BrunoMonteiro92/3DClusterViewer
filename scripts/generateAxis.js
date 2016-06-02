@@ -52,7 +52,7 @@ generateAxis.prototype.showAxisY = function() {
 	if (this.displayAxisY == false)
 		this.axisY.setEnabled(false);
 	else 
-		this.axisY.setEnabled(false);
+		this.axisY.setEnabled(true);
 };
 
 //Métod para exibir ou não o eixo Z, usado no dat.GUI
