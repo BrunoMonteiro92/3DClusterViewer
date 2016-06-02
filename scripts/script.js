@@ -234,6 +234,9 @@ function update() {
 		folder.add(grid, 'displayGroundXY').name('Show XY plane').onChange(function(){
 			grid.showGroundXY();
 		});
+		folder.add(grid, 'gridOpacity', 0.1, 1.0).name('Grid Opacity').step(0.05).onChange(function(){
+			grid.updateGridOpacity();
+		});
 	}
 	
 	//Chama função que cria a cena
