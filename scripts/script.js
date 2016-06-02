@@ -184,7 +184,9 @@ function update() {
 		//Inicializa o dat.GUI
 		initGui(axis, grid);
 		
-		//Inicializa o Stats    
+		//Inicializa o Stats
+		if(stats)
+			stats.destroy();
 		stats = new Stats();
 		stats.setMode( 1 );
 		document.body.appendChild( stats.domElement );
