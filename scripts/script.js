@@ -185,11 +185,7 @@ function update() {
 		initGui(axis, grid);
 		
 		//Inicializa o Stats
-		if(stats)
-			stats.destroy();
-		stats = new Stats();
-		stats.setMode( 1 );
-		document.body.appendChild( stats.domElement );
+		initStats();
 
 		//Retorna a cena
 		return scene;
@@ -239,6 +235,14 @@ function update() {
 		folder.add(grid, 'gridOpacity', 0.05, 0.95).name('Grid Opacity').step(0.05).onChange(function(){
 			grid.updateGridOpacity();
 		});
+	}
+	
+	var initStats = function(){
+		if(stats)
+			stats.destroy();
+		stats = new Stats();
+		stats.setMode( 1 );
+		document.body.appendChild( stats.domElement );
 	}
 	
 	//Chama função que cria a cena
