@@ -129,14 +129,14 @@ function update() {
 
 				//Desenha a esfera da ponta
 				var sphereVertice = BABYLON.Mesh.CreateSphere(
-						"sphereVertice", 20, 5, scene);
+						"sphereVertice", 20, 8, scene);
 				sphereVertice.position = new BABYLON.Vector3(
 						matrix[i][0], matrix[i][1], matrix[i][2]);
 				sphereVertice.material = matObjects;
 
 				//Desenha o centro do cluster
 				var sphereCentro = BABYLON.Mesh.CreateSphere(
-						"sphereCentro", 20, 5, scene);
+						"sphereCentro", 20, 8, scene);
 				sphereCentro.position = new BABYLON.Vector3(
 						matrix[i][3], matrix[i][4], matrix[i][5]);
 				sphereCentro.material = matObjects;
@@ -148,7 +148,7 @@ function update() {
 
 				//Desenha o cilindro
 				var cylinder = BABYLON.Mesh.CreateCylinder("cylinder",
-						distance, 2, 2, 36, scene);
+						distance, 4, 4, 36, scene);
 				cylinder.material = matObjects;
 
 				//Seta o pivo do cilindro para não ser no centro dele
