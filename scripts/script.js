@@ -48,6 +48,7 @@ function update() {
 	var engine = new BABYLON.Engine(canvas, true);
 	
 	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
+	/*
 	BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 		// Compute
 		var cosa = Math.cos(this.alpha);
@@ -98,6 +99,7 @@ function update() {
 		}
 		return this._viewMatrix;
 	};
+	*/
 
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
