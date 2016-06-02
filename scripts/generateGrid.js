@@ -41,37 +41,23 @@ generateGrid.prototype.updateGrid = function() {
 //Métod para exibir ou não o plano XZ, usado no dat.GUI
 generateGrid.prototype.showGroundXZ = function() {
 	if (this.displayGroundXZ == false)
-		this.groundXZ.dispose();
-	else {
-		this.size = 200;
-		this.groundXZ = BABYLON.Mesh.CreateGround("groundXZ", this.size,
-			this.size, 2, this.scene);
-		this.groundXZ.material = this.groundMaterial;
-	}
+		this.groundXZ.setEnabled(false);
+	else 
+		this.groundXZ.setEnabled(true);
 };
 
 //Métod para exibir ou não o plano YZ, usado no dat.GUI
 generateGrid.prototype.showGroundYZ = function() {
 	if (this.displayGroundYZ == false)
-		this.groundYZ.dispose();
-	else {
-		this.size = 200;
-		this.groundYZ = BABYLON.Mesh.CreateGround("groundYZ", this.size,
-			this.size, 2, this.scene);
-		this.groundYZ.material = this.groundMaterial;
-		this.groundYZ.rotation.z = Math.PI / 2;
-	}
+		this.groundYZ.setEnabled(false);
+	else 
+		this.groundYZ.setEnabled(true);
 };
 
 //Métod para exibir ou não o plano XY, usado no dat.GUI
 generateGrid.prototype.showGroundXY = function() {
 	if (this.displayGroundXY == false)
-		this.groundXY.dispose();
-	else {
-		this.size = 200;
-		this.groundXY = BABYLON.Mesh.CreateGround("groundXY", this.size,
-			this.size, 2, this.scene);
-		this.groundXY.material = this.groundMaterial;
-		this.groundXY.rotation.x = -Math.PI / 2;
-	}
+		this.groundXY.setEnabled(false);
+	else 
+		this.groundXY.setEnabled(true);
 };
