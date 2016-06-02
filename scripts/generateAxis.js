@@ -42,38 +42,23 @@ generateAxis.prototype.updateAxis = function() {
 //Métod para exibir ou não o eixo X, usado no dat.GUI
 generateAxis.prototype.showAxisX = function() {
 	if (this.displayAxisX == false)
-		this.axisX.dispose();
-	else {
-		this.size = 100;
-		this.axisX = BABYLON.Mesh.CreateLines("axisX", [
-			BABYLON.Vector3.Zero(), 
-			new BABYLON.Vector3(this.size, 0, 0) ], this.scene);
-		this.axisX.color = BABYLON.Color3.Red();
-	}
+		this.axisX.setEnabled(false);
+	else 
+		this.axisX.setEnabled(true);
 };
 
 //Métod para exibir ou não o eixo Y, usado no dat.GUI
 generateAxis.prototype.showAxisY = function() {
 	if (this.displayAxisY == false)
-		this.axisY.dispose();
-	else {
-		this.size = 100;
-		this.axisY = BABYLON.Mesh.CreateLines("axisY", [
-			BABYLON.Vector3.Zero(),
-			new BABYLON.Vector3(0, this.size, 0) ], this.scene);
-		this.axisY.color = BABYLON.Color3.Green();
-	}
+		this.axisY.setEnabled(false);
+	else 
+		this.axisY.setEnabled(false);
 };
 
 //Métod para exibir ou não o eixo Z, usado no dat.GUI
 generateAxis.prototype.showAxisZ = function() {
 	if (this.displayAxisZ == false)
-		this.axisZ.dispose();
-	else {
-		this.size = 100;
-		this.axisZ = BABYLON.Mesh.CreateLines("axisZ", [
-			BABYLON.Vector3.Zero(),
-			new BABYLON.Vector3(0, 0, this.size) ], this.scene);
-		this.axisZ.color = BABYLON.Color3.Blue();
-	}
+		this.axisZ.setEnabled(false);
+	else 
+		this.axisZ.setEnabled(true);
 };
