@@ -238,8 +238,8 @@ function update() {
 	}
 	
 	var initStats = function(){
-		if(stats)
-			stats.destroy();
+		//if(stats)
+		//	stats.destroy();
 		stats = new Stats();
 		stats.setMode( 1 );
 		document.body.appendChild( stats.domElement );
