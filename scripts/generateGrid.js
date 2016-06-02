@@ -4,6 +4,7 @@
 generateGrid = function(scene){
 	//Parâmetros para serem usados nos métodos
 	this.size = 200;
+	this.gridOpacity = 0.5;
 	this.displayGroundXZ = true;
 	this.displayGroundYZ = true;
 	this.displayGroundXY = true;
@@ -15,7 +16,7 @@ generateGrid = function(scene){
 	this.groundMaterial.backFaceCulling = false;
 	this.groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
 	this.groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
-	this.groundMaterial.opacity = 0.9;
+	this.groundMaterial.opacity = this.gridOpacity;
 
 	//Cria os três planos e seta o material para ser grid (como se fosse uma textura)
 	this.groundXZ = BABYLON.Mesh.CreateGround("groundXZ", this.size,
@@ -36,6 +37,10 @@ generateGrid.prototype.updateGrid = function() {
 	this.groundXZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
+};
+
+generateGrid.prototype.updateGridOpacity = function() {
+	this.groundMaterial.opacity = this.gridOpacity;
 };
 
 //Métod para exibir ou não o plano XZ, usado no dat.GUI
