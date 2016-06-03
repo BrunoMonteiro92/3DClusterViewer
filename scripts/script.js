@@ -43,6 +43,8 @@ window.addEventListener('DOMContentLoaded', function() {
 function update() {
 	// get the canvas DOM element
 	var canvas = document.getElementById('renderCanvas');
+	
+	scene.clearColor = new BABYLON.Color4(1,0,0,0);
 
 	// load the 3D engine
 	var engine = new BABYLON.Engine(canvas, true);
