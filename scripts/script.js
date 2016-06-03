@@ -43,8 +43,6 @@ window.addEventListener('DOMContentLoaded', function() {
 function update() {
 	// get the canvas DOM element
 	var canvas = document.getElementById('renderCanvas');
-	
-	scene.clearColor = new BABYLON.Color4(1,0,0,0);
 
 	// load the 3D engine
 	var engine = new BABYLON.Engine(canvas, true);
@@ -105,6 +103,8 @@ function update() {
 	var createScene = function() {
 		//Cria a cena
 		var scene = new BABYLON.Scene(engine);
+		
+		scene.clearColor = new BABYLON.Color4(1,0,0,0);
 
 		//Cria uma camera e seta a posição da mesma
 		var camera = new BABYLON.ArcRotateCamera("camera1",
