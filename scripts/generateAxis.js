@@ -4,9 +4,9 @@
 generateAxis = function(scene){
 	//Parâmetros para os demais métodos
 	this.size = 100;
-	this.displayAxisX = true;
-	this.displayAxisY = true;
-	this.displayAxisZ = true;
+	this.displayAxisX = false;
+	this.displayAxisY = false;
+	this.displayAxisZ = false;
 	this.scene = scene;
 	
 	//Desenha eixo X
