@@ -48,7 +48,6 @@ function update() {
 	var engine = new BABYLON.Engine(canvas, true);
 	
 	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
-	/*
 	BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 		// Compute
 		var cosa = Math.cos(this.alpha);
@@ -99,7 +98,6 @@ function update() {
 		}
 		return this._viewMatrix;
 	};
-	*/
 
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
@@ -121,7 +119,7 @@ function update() {
 				camera.position, scene);
 		
 		//Desenha os clusters
-		/*var drawCluster = function(matrix) {
+		var drawCluster = function(matrix) {
 			for (var i = 0; i < matrix.length; i++) {
 				//Seta a cor dos objetos
 				var matObjects = new BABYLON.StandardMaterial(
@@ -177,11 +175,11 @@ function update() {
 				cylinder.rotationQuaternion = BABYLON.Quaternion
 						.RotationAxis(axis, angle);
 			}
-		}*/
+		}
 		
 		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
-		//drawCluster(matrix);
+		drawCluster(matrix);
 
 		//Inicializa o dat.GUI
 		initGui(axis, grid);
