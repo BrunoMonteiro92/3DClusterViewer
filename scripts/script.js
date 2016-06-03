@@ -103,8 +103,6 @@ function update() {
 	var createScene = function() {
 		//Cria a cena
 		var scene = new BABYLON.Scene(engine);
-		
-		scene.clearColor = new BABYLON.Color4(1,0,0,0);
 
 		//Cria uma camera e seta a posição da mesma
 		var camera = new BABYLON.ArcRotateCamera("camera1",
@@ -213,9 +211,9 @@ function update() {
 		folder.add(axis, 'displayAxisY').name("Show axis Y").onChange(function(){
 			axis.showAxisY();
 		});
-		folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
+		/*folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
 			axis.showAxisZ();
-		});
+		});*/
 
 		//Cria outra pasta
 		folder = gui.addFolder('Plane options');
