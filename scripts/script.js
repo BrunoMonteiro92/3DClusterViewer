@@ -115,7 +115,8 @@ function update() {
 		camera.attachControl(canvas, false);
 
 		//Cria a iluminação apontando para 0, 1, 0 (vindo do eixo y)
-		var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+		var light = new BABYLON.HemisphericLight('light1',
+				camera.position, scene);
 		
 		//Desenha os clusters
 		var drawCluster = function(matrix) {
