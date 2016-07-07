@@ -14,19 +14,16 @@ function readSingleFile(evt) {
 		var contents = 'empty';
 		r.onload = function(e) {
 			contents = e.target.result;
-			var pastKey = false;
-			contents.split('\n').forEach(function(line, i) {
-				if (pastKey) {
-					var vals = line.trim().split(' ');
-					if (vals.length > 2) {
-						matrix.push(vals);
-					}
-				}
-				if (line.trim() === keyWord) {
-					pastKey = true;
-				}
-			})
-			update();
+            var pos = contents.indexOf(keyWord) + keyWord.length; //find [ARESTAS] portion
+            var numbers = contents.substr(pos).trim(); //trim it from rest of file
+            matrix = numbers.split('\n') // get separate lines
+	        	.map(function (e) {
+                    return e.split(' '); // split them by whitespace
+                })
+                .filter(function (e) {
+                    return e.length > 2; // filter all unwanted lines
+                })
+            update();
 		}
 		r.readAsText(f);
 	} else {
