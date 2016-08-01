@@ -40,15 +40,14 @@ window.addEventListener('DOMContentLoaded', function() {
 	update();
 });
 
-function update() {
-	// get the canvas DOM element
-	var canvas = document.getElementById('renderCanvas');
+// get the canvas DOM element
+var canvas = document.getElementById('renderCanvas');
 
-	// load the 3D engine
-	var engine = new BABYLON.Engine(canvas, true);
+// load the 3D engine
+var engine = new BABYLON.Engine(canvas, false,{ antialias: false, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
 	
 	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
-	BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
+	/*BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 		// Compute
 		var cosa = Math.cos(this.alpha);
 		var sina = Math.sin(this.alpha);
@@ -97,8 +96,9 @@ function update() {
 
 		}
 		return this._viewMatrix;
-	};
+	};*/
 
+function update() {
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
 		//Cria a cena
