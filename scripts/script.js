@@ -44,59 +44,58 @@ window.addEventListener('DOMContentLoaded', function() {
 var canvas = document.getElementById('renderCanvas');
 
 // load the 3D engine
-var engine = new BABYLON.Engine(canvas, false,{ antialias: false, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
+var engine = new BABYLON.Engine(canvas, true);
+//var engine = new BABYLON.Engine(canvas, false,{ antialias: false, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
 	
-	//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
-	/*BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
-		// Compute
-		var cosa = Math.cos(this.alpha);
-		var sina = Math.sin(this.alpha);
-		var cosb = Math.cos(this.beta);
-		var sinb = Math.sin(this.beta);
+//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
+/*
+BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
+	// Compute
+	var cosa = Math.cos(this.alpha);
+	var sina = Math.sin(this.alpha);
+	var cosb = Math.cos(this.beta);
+	var sinb = Math.sin(this.beta);
 
-		if (sinb === 0) {
-			sinb = 0.0001;
+	if (sinb === 0) {
+		sinb = 0.0001;
+	}
+	
+	var target = this._getTargetPosition();
+	target.addToRef(new BABYLON.Vector3(this.radius * cosa * sinb,
+			this.radius * cosb, this.radius * sina * sinb),
+			this._newPosition);
+	if (this.getScene().collisionsEnabled && this.checkCollisions) {
+		this._collider.radius = this.collisionRadius;
+		this._newPosition.subtractToRef(this.position,
+				this._collisionVelocity);
+		this._collisionTriggered = true;
+		this.getScene().collisionCoordinator.getNewPosition(
+				this.position, this._collisionVelocity,
+				this._collider, 3, null,
+				this._onCollisionPositionChange, this.uniqueId);
+	} else {
+		this.position.copyFrom(this._newPosition);
+		var up = this.upVector;
+		if (this.allowUpsideDown && this.beta < 0) {
+			up = up.clone();
+			up = up.negate();
 		}
-		
-		var target = this._getTargetPosition();
-		target.addToRef(new BABYLON.Vector3(this.radius * cosa * sinb,
-				this.radius * cosb, this.radius * sina * sinb),
-				this._newPosition);
-		if (this.getScene().collisionsEnabled && this.checkCollisions) {
-			this._collider.radius = this.collisionRadius;
-			this._newPosition.subtractToRef(this.position,
-					this._collisionVelocity);
-			this._collisionTriggered = true;
-			this.getScene().collisionCoordinator.getNewPosition(
-					this.position, this._collisionVelocity,
-					this._collider, 3, null,
-					this._onCollisionPositionChange, this.uniqueId);
+		if (this.radius < 0) {
+			var vec = this.position.subtract(target);
+			vec.normalize();
+
+			BABYLON.Matrix.LookAtLHToRef(this.position,
+					this.position.add(vec), up, this._viewMatrix);
 		} else {
-
-			this.position.copyFrom(this._newPosition);
-			var up = this.upVector;
-			if (this.allowUpsideDown && this.beta < 0) {
-				up = up.clone();
-				up = up.negate();
-			}
-
-			if (this.radius < 0) {
-				var vec = this.position.subtract(target);
-				vec.normalize();
-
-				BABYLON.Matrix.LookAtLHToRef(this.position,
-						this.position.add(vec), up, this._viewMatrix);
-			} else {
-				BABYLON.Matrix.LookAtLHToRef(this.position, target, up,
-						this._viewMatrix);
-			}
-
-			this._viewMatrix.m[12] += this.targetScreenOffset.x;
-			this._viewMatrix.m[13] += this.targetScreenOffset.y;
-
+			BABYLON.Matrix.LookAtLHToRef(this.position, target, up,
+					this._viewMatrix);
 		}
-		return this._viewMatrix;
-	};*/
+		this._viewMatrix.m[12] += this.targetScreenOffset.x;
+		this._viewMatrix.m[13] += this.targetScreenOffset.y;
+	}
+	return this._viewMatrix;
+};
+*/
 
 function update() {
 	//Função que cria a cena e retorna a mesma
@@ -118,81 +117,25 @@ function update() {
 		var light = new BABYLON.HemisphericLight('light1',
 				camera.position, scene);
 		
-		//Desenha os clusters
-		var drawCluster = function(matrix) {
-			for (var i = 0; i < matrix.length; i++) {
-				//Seta a cor dos objetos
-				var matObjects = new BABYLON.StandardMaterial(
-						"matObjects", scene);
-				matObjects.diffuseColor = new BABYLON.Color3(
-						matrix[i][6], matrix[i][7], matrix[i][8]);
-
-				//Desenha a esfera da ponta
-				var sphereVertice = BABYLON.Mesh.CreateSphere(
-						"sphereVertice", 20, 8, scene);
-				sphereVertice.position = new BABYLON.Vector3(
-						matrix[i][0], matrix[i][1], matrix[i][2]);
-				sphereVertice.material = matObjects;
-
-				//Desenha o centro do cluster
-				var sphereCentro = BABYLON.Mesh.CreateSphere(
-						"sphereCentro", 20, 8, scene);
-				sphereCentro.position = new BABYLON.Vector3(
-						matrix[i][3], matrix[i][4], matrix[i][5]);
-				sphereCentro.material = matObjects;
-
-				//Seta o ponto inicial e final do cilindro e calcula a distancia
-				var vstart = sphereVertice.position;
-				var vend = sphereCentro.position;
-				var distance = BABYLON.Vector3.Distance(vstart, vend);
-
-				//Desenha o cilindro
-				var cylinder = BABYLON.Mesh.CreateCylinder("cylinder",
-						distance, 4, 4, 36, scene);
-				cylinder.material = matObjects;
-
-				//Seta o pivo do cilindro para não ser no centro dele
-				cylinder.setPivotMatrix(BABYLON.Matrix.Translation(0,
-						-distance / 2, 0));
-
-				//Seta a posição do cilindro para a primeira esfera
-				cylinder.position = sphereCentro.position;
-
-				//Encontra e calcula o vetor entre as esferas
-				var v1 = vend.subtract(vstart);
-				v1.normalize();
-				var v2 = new BABYLON.Vector3(0, 1, 0);
-
-				//Faz um vetor perpendicular entre os dois vetores
-				var axis = BABYLON.Vector3.Cross(v2, v1);
-				axis.normalize();
-
-				//Angulo entre os vetores
-				var angle = BABYLON.Vector3.Dot(v1, v2);
-				angle = Math.acos(angle);
-
-				//Rotaciona o cilindro para ligar as duas esferas
-				cylinder.rotationQuaternion = BABYLON.Quaternion
-						.RotationAxis(axis, angle);
-			}
-		}
-		
+		//Chama as classes que desenham o eixo, grid e clusters
 		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
-		drawCluster(matrix);
+		var cluster = new generateCluster(scene, matrix);
 
 		//Inicializa o dat.GUI
-		initGui(axis, grid);
+		initGui(axis, grid, cluster);
 		
 		//Inicializa o Stats
 		initStats();
+
+		matrix=null;
 
 		//Retorna a cena
 		return scene;
 	}
 	
 	//Função do dat.GUI
-	var initGui = function(axis, grid){
+	var initGui = function(axis, grid, cluster){
 		if (gui)
 			gui.destroy();
 		//Inicia
@@ -234,6 +177,19 @@ function update() {
 		});
 		folder.add(grid, 'gridOpacity', 0.05, 0.95).name('Grid Opacity').step(0.05).onChange(function(){
 			grid.updateGridOpacity();
+		});
+
+		//Cria outra pasta 
+		folder = gui.addFolder('Cluster options');
+		folder.open();
+		folder.add(cluster, 'sphereRadius', 2, 20).name("Sphere Radius").step(1).onChange(function(){
+			cluster.updateSphere();
+		});
+		folder.add(cluster, 'cylinderRadius', 1, 10).name("Cylinder Radius").step(1).onChange(function(){
+			cluster.updateCylinder();
+		});
+		folder.add(cluster, 'displayCylinder').name("Show Cylinders").onChange(function(){
+			cluster.showCylinder();
 		});
 	}
 	
