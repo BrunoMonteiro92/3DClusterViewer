@@ -59,7 +59,7 @@ BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 	if (sinb === 0) {
 		sinb = 0.0001;
 	}
-	
+
 	var target = this._getTargetPosition();
 	target.addToRef(new BABYLON.Vector3(this.radius * cosa * sinb,
 			this.radius * cosb, this.radius * sina * sinb),
@@ -97,11 +97,79 @@ BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 };
 */
 
+//Função do DAT.GUI
+var initGui = function(axis, grid, cluster){
+	if (gui)
+		gui.destroy();
+	//Inicia
+	gui = new dat.GUI();
+	//Cria uma pasta
+	var folder = gui.addFolder('Axis options');
+	//Mantem a pasta aberta no inicio
+	folder.open();
+	//Adiciona à pasta as opções
+	folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
+		axis.updateAxis();
+	});
+	folder.add(axis, 'displayAxisX').name("Show axis X").onChange(function(){
+		axis.showAxisX();
+	});
+	folder.add(axis, 'displayAxisY').name("Show axis Y").onChange(function(){
+		axis.showAxisY();
+	});
+	folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
+		axis.showAxisZ();
+	});
+
+	//Cria outra pasta
+	folder = gui.addFolder('Plane options');
+	//Mantem a pasta aberta no inicio
+	folder.open();
+	//Adiciona à pasta as opções
+	folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
+		grid.updateGrid();
+	});
+	folder.add(grid, 'displayGroundXZ').name('Show XZ plane').onChange(function(){
+		grid.showGroundXZ();
+	});
+	folder.add(grid, 'displayGroundYZ').name('Show YZ plane').onChange(function(){
+		grid.showGroundYZ();
+	});
+	folder.add(grid, 'displayGroundXY').name('Show XY plane').onChange(function(){
+		grid.showGroundXY();
+	});
+	folder.add(grid, 'gridOpacity', 0.05, 0.95).name('Grid Opacity').step(0.05).onChange(function(){
+		grid.updateGridOpacity();
+	});
+
+	//Cria outra pasta 
+	folder = gui.addFolder('Cluster options');
+	folder.open();
+	folder.add(cluster, 'sphereRadius', 2, 20).name("Sphere Radius").step(1).onChange(function(){
+		cluster.updateSphere();
+	});
+	folder.add(cluster, 'cylinderRadius', 1, 10).name("Cylinder Radius").step(1).onChange(function(){
+		cluster.updateCylinder();
+	});
+	folder.add(cluster, 'displayCylinder').name("Show Cylinders").onChange(function(){
+		cluster.showCylinder();
+	});
+}
+	
+var initStats = function(){
+	//if (stats)
+	//	stats = null;
+	stats = new Stats();
+	stats.setMode( 1 );
+	document.body.appendChild( stats.domElement );
+}
+
 function update() {
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
 		//Cria a cena
 		var scene = new BABYLON.Scene(engine);
+		//scene.debugLayer.show();
 
 		//Cria uma camera e seta a posição da mesma
 		var camera = new BABYLON.ArcRotateCamera("camera1",
@@ -128,77 +196,10 @@ function update() {
 		//Inicializa o Stats
 		initStats();
 
-		matrix=null;
+		matrix = null;
 
 		//Retorna a cena
 		return scene;
-	}
-	
-	//Função do dat.GUI
-	var initGui = function(axis, grid, cluster){
-		if (gui)
-			gui.destroy();
-		//Inicia
-		gui = new dat.GUI();
-		//Cria uma pasta
-		var folder = gui.addFolder('Axis options');
-		//Mantem a pasta aberta no inicio
-		folder.open();
-		//Adiciona à pasta as opções
-		folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
-			axis.updateAxis();
-		});
-		folder.add(axis, 'displayAxisX').name("Show axis X").onChange(function(){
-			axis.showAxisX();
-		});
-		folder.add(axis, 'displayAxisY').name("Show axis Y").onChange(function(){
-			axis.showAxisY();
-		});
-		folder.add(axis, 'displayAxisZ').name("Show axis Z").onChange(function(){
-			axis.showAxisZ();
-		});
-
-		//Cria outra pasta
-		folder = gui.addFolder('Plane options');
-		//Mantem a pasta aberta no inicio
-		folder.open();
-		//Adiciona à pasta as opções
-		folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
-			grid.updateGrid();
-		});
-		folder.add(grid, 'displayGroundXZ').name('Show XZ plane').onChange(function(){
-			grid.showGroundXZ();
-		});
-		folder.add(grid, 'displayGroundYZ').name('Show YZ plane').onChange(function(){
-			grid.showGroundYZ();
-		});
-		folder.add(grid, 'displayGroundXY').name('Show XY plane').onChange(function(){
-			grid.showGroundXY();
-		});
-		folder.add(grid, 'gridOpacity', 0.05, 0.95).name('Grid Opacity').step(0.05).onChange(function(){
-			grid.updateGridOpacity();
-		});
-
-		//Cria outra pasta 
-		folder = gui.addFolder('Cluster options');
-		folder.open();
-		folder.add(cluster, 'sphereRadius', 2, 20).name("Sphere Radius").step(1).onChange(function(){
-			cluster.updateSphere();
-		});
-		folder.add(cluster, 'cylinderRadius', 1, 10).name("Cylinder Radius").step(1).onChange(function(){
-			cluster.updateCylinder();
-		});
-		folder.add(cluster, 'displayCylinder').name("Show Cylinders").onChange(function(){
-			cluster.showCylinder();
-		});
-	}
-	
-	var initStats = function(){
-		//if(stats)
-		//	stats.destroy();
-		stats = new Stats();
-		stats.setMode( 1 );
-		document.body.appendChild( stats.domElement );
 	}
 	
 	//Chama função que cria a cena
