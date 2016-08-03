@@ -1,7 +1,6 @@
 controlBackground = function(scene){
 	this.scene = scene;
-	this.colorString = "#000000"
-	//this.color = BABYLON.Color3.FromHexString(this.colorString);
+	this.colorString = "#33334D"
 };
 
 controlBackground.prototype.updateColor = function() {
