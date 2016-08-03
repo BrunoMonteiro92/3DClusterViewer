@@ -98,13 +98,13 @@ BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 */
 
 //Função do DAT.GUI
-var initGui = function(axis, grid, cluster){
+var initGui = function(axis, grid, cluster, background){
 	if (gui)
 		gui.destroy();
 	//Inicia
 	gui = new dat.GUI();
 	//Cria uma pasta
-	var folder = gui.addFolder('Axis options');
+	var folder = gui.addFolder('Axis Options');
 	//Mantem a pasta aberta no inicio
 	folder.open();
 	//Adiciona à pasta as opções
@@ -122,7 +122,7 @@ var initGui = function(axis, grid, cluster){
 	});
 
 	//Cria outra pasta
-	folder = gui.addFolder('Plane options');
+	folder = gui.addFolder('Plane Options');
 	//Mantem a pasta aberta no inicio
 	folder.open();
 	//Adiciona à pasta as opções
@@ -143,7 +143,7 @@ var initGui = function(axis, grid, cluster){
 	});
 
 	//Cria outra pasta 
-	folder = gui.addFolder('Cluster options');
+	folder = gui.addFolder('Cluster Options');
 	folder.open();
 	folder.add(cluster, 'sphereRadius', 2, 20).name("Sphere Radius").step(1).onChange(function(){
 		cluster.updateSphere();
@@ -153,6 +153,13 @@ var initGui = function(axis, grid, cluster){
 	});
 	folder.add(cluster, 'displayCylinder').name("Show Cylinders").onChange(function(){
 		cluster.showCylinder();
+	});
+
+	//Cria outra pasta
+	folder = gui.addFolder('Background Options');
+	folder.open();
+	folder.addColor(background, 'colorString').name("Background Color").onChange(function(){
+		background.updateColor();
 	});
 }
 	
@@ -189,14 +196,13 @@ function update() {
 		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
 		var cluster = new generateCluster(scene, matrix);
+		var background = new controlBackground(scene);
 
 		//Inicializa o dat.GUI
-		initGui(axis, grid, cluster);
+		initGui(axis, grid, cluster, background);
 		
 		//Inicializa o Stats
 		initStats();
-
-		matrix = null;
 
 		//Retorna a cena
 		return scene;
