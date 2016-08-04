@@ -16,6 +16,7 @@ generateGrid = function(scene){
 	this.groundMaterial.backFaceCulling = false;
 	this.groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
 	this.groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
+	this.groundMaterial.minorUnitVisibility = 0;
 	this.groundMaterial.opacity = this.gridOpacity;
 
 	//Cria os três planos e seta o material para ser grid (como se fosse uma textura)
