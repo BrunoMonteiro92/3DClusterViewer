@@ -1,3 +1,5 @@
+//Classe que gera os clusters/grafos
+
 generateCluster = function(scene, matrix){
 	var matObjects;
 	var sphereVertex;
@@ -12,6 +14,7 @@ generateCluster = function(scene, matrix){
 	var axis;
 	var angle;
 
+	//Parâmetros para os demais métodos
 	this.arrayOfSpheres=[];
 	this.arrayOfCylinders=[];
 	this.sphereRadius = 8;
@@ -33,6 +36,7 @@ generateCluster = function(scene, matrix){
 				matrix[i][0], matrix[i][1], matrix[i][2]);
 		sphereVertex.material = matObjects;
 
+		//Armazena a esfera num array de objetos
 		this.arrayOfSpheres.push(sphereVertex);
 
 		//Desenha o centro do cluster
@@ -42,6 +46,7 @@ generateCluster = function(scene, matrix){
 				matrix[i][3], matrix[i][4], matrix[i][5]);
 		sphereCenter.material = matObjects;
 
+		//Armazena outra esfera num array de objetos
 		this.arrayOfSpheres.push(sphereCenter);
 
 		//Seta o ponto inicial e final do cilindro e calcula a distancia
@@ -78,16 +83,19 @@ generateCluster = function(scene, matrix){
 		cylinder.rotationQuaternion = BABYLON.Quaternion
 				.RotationAxis(axis, angle);
 
+		//Armazena os cilindros num array de objetos
 		this.arrayOfCylinders.push(cylinder);
 	}
 };
 
+//Metodo para aumentar e diminuir o tamanho das esferas
 generateCluster.prototype.updateSphere = function(){
 	for (var i = 0; i < this.arrayOfSpheres.length; i++){
 		this.arrayOfSpheres[i].scaling = new BABYLON.Vector3(this.sphereRadius/8, this.sphereRadius/8, this.sphereRadius/8);
 	}
 };
 
+//Metodo para aumentar e diminuir o tamanho dos cilindros
 generateCluster.prototype.updateCylinder = function(){
 	for (var i = 0; i < this.arrayOfCylinders.length; i++){
 		this.arrayOfCylinders[i].scaling.x = this.cylinderRadius/4;
@@ -95,6 +103,7 @@ generateCluster.prototype.updateCylinder = function(){
 	}
 };
 
+//Metodo para exibir ou nao os cilindros
 generateCluster.prototype.showCylinder = function(){
 	for (var i = 0; i < this.arrayOfCylinders.length; i++){
 		if (this.displayCylinder == false)
