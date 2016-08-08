@@ -15,6 +15,9 @@ generateAxis = function(scene){
 			new BABYLON.Vector3(this.size, 0, 0) ], this.scene);
 	//Na cor vermelha
 	this.axisX.color = BABYLON.Color3.Red();
+	this.axisX.enableEdgesRendering();
+	this.axisX.edgesWidth = 50.0;
+	this.axisX.edgesColor = new BABYLON.Color4(1, 0, 0, 1);
 	
 	//Desenha eixo Y
 	this.axisY = BABYLON.Mesh.CreateLines("axisY", [
@@ -22,6 +25,9 @@ generateAxis = function(scene){
 			new BABYLON.Vector3(0, this.size, 0) ], this.scene);
 	//Na cor verde
 	this.axisY.color = BABYLON.Color3.Green();
+	this.axisY.enableEdgesRendering();
+	this.axisY.edgesWidth = 50.0;
+	this.axisY.edgesColor = new BABYLON.Color4(0, 1, 0, 1);
 	
 	//Desenha eixo Z
 	this.axisZ = BABYLON.Mesh.CreateLines("axisZ", [
@@ -29,6 +35,9 @@ generateAxis = function(scene){
 			new BABYLON.Vector3(0, 0, this.size) ], this.scene);
 	//Na cor azul
 	this.axisZ.color = BABYLON.Color3.Blue();
+	this.axisZ.enableEdgesRendering();
+	this.axisZ.edgesWidth = 50.0;
+	this.axisZ.edgesColor = new BABYLON.Color4(0, 0, 1, 1);
 
 };
 
