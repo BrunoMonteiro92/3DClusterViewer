@@ -5,6 +5,7 @@ generateGrid = function(scene){
 	//Parâmetros para serem usados nos métodos
 	this.size = 200;
 	this.gridOpacity = 0.5;
+	this.ratio = 1;
 	this.displayGroundXZ = true;
 	this.displayGroundYZ = true;
 	this.displayGroundXY = true;
@@ -42,6 +43,10 @@ generateGrid.prototype.updateGrid = function() {
 
 generateGrid.prototype.updateGridOpacity = function() {
 	this.groundMaterial.opacity = this.gridOpacity;
+};
+
+generateGrid.prototype.updateRatio = function() {
+	this.groundMaterial.gridRatio = this.ratio;
 };
 
 //Métod para exibir ou não o plano XZ, usado no dat.GUI
