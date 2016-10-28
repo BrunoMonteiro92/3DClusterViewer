@@ -141,6 +141,9 @@ var initGui = function(axis, grid, cluster, background){
 	folder.add(grid, 'gridOpacity', 0.05, 0.95).name('Grid Opacity').step(0.05).onChange(function(){
 		grid.updateGridOpacity();
 	});
+	folder.add(grid, 'ratio', 0.05, 0.95).name('Grid Ratio').step(1).onChange(function(){
+		grid.updategridRatio();
+	});
 
 	//Cria outra pasta 
 	folder = gui.addFolder('Cluster Options');
