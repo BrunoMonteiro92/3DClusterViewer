@@ -13,36 +13,39 @@
 		<script type="text/javascript" src="scripts/generateCluster.js"></script>
 		<script type="text/javascript" src="scripts/controlBackground.js"></script>
 		<script type="text/javascript" src="scripts/dat.gui.min.js"></script>
-		<script type="text/javascript" src="scripts/stats.min.js"></script>
-
 
 		<link rel="stylesheet" href="style/style.css" media="screen" title="no title" charset="utf-8">
-		<link rel="stylesheet" href="style/round_bbt.css" media="screen" title="no title" charset="utf-8">
 
 		<title>Visual 3D Cluster - Visualizador tridimensional de grafos
 			e clusters</title>
 
 	</head>
 	<body>
-
-		<!--Colocando o Botao no site -->
-		<button id="myBtn" class="round-button">Menu</button>
-
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
-
-		  <!-- Modal content -->
-		  <div class="modal-content">
-		    <span class="close"> Fechar </span>
-		    <p><input id="fileinput" type="file" /></p>
-		  </div>
-
+		<canvas id="renderCanvas" touch-action="none">"></canvas>
+		<span class="label" id="fpsLabel">FPS</span>
+		<!-- Menu -->
+		<div id="controlPanel">
+			<div id="controlsZone">
+				<p>
+					<label class="uploadLabel">
+						<input id="fileinput" type="file"/>
+						<span>Upload file...</span>
+					</label>
+				</p>
+				<p>
+					<button id="fullscreen">Fullscreen</button>
+				</p>
+				<p>
+					<button id="enableDebug">Debug</button>
+				</p>
+			</div>
+			<div class="tag">Menu</div>
+			<div class="tag" id="clickableTag"></div>
 		</div>
-
-		<script type="text/javascript" src="scripts/round_bbt.js" ></script>
-		<!--Fim do botão -->
-
-		<canvas id="renderCanvas"></canvas>
+		
+		<!-- Menu control script -->
+		<script type="text/javascript" src="scripts/menu.js"></script>
+		<!-- Scene -->
 		<script type="text/javascript" src="scripts/script.js" ></script>
 	</body>
 </html>
