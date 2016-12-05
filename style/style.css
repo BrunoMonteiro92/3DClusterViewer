@@ -82,8 +82,8 @@ button {
 	left: 50%;
 	color: #888888;
 	font-size: 18px;
-	margin-left: -70px;
 	text-align: center;
+	vertical-align: middle;
 	top: -40px;
 	border-top-left-radius: 10px 10px;
 	border-top-right-radius: 10px 10px;
