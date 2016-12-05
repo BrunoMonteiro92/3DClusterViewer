@@ -166,12 +166,25 @@ var initGui = function(axis, grid, cluster, background){
 	});
 }
 
+var enableDebug = document.getElementById("enableDebug");
+	
+	if (enableDebug) {
+   		enableDebug.addEventListener("click", function () {
+			if (scene) {
+				if (scene.debugLayer.isVisible()) {
+					scene.debugLayer.hide();
+				} else {
+					scene.debugLayer.show();
+				}
+			}
+    		});
+	}
+
 function update() {
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
 		//Cria a cena
 		scene = new BABYLON.Scene(engine);
-		//scene.debugLayer.show();
 
 		//Cria uma camera e seta a posição da mesma
 		var camera = new BABYLON.ArcRotateCamera("camera1",
@@ -207,20 +220,6 @@ function update() {
 	engine.runRenderLoop(function() {
 		scene.render();
 	});
-	
-	var enableDebug = document.getElementById("enableDebug");
-	
-	if (enableDebug) {
-   		enableDebug.addEventListener("click", function () {
-			if (scene) {
-				if (scene.debugLayer.isVisible()) {
-					scene.debugLayer.hide();
-				} else {
-					scene.debugLayer.show();
-				}
-			}
-    		});
-	}
 
 	//A janela/canvas faz um resize dependendo do tamanho da tela
 	window.addEventListener('resize', function() {
