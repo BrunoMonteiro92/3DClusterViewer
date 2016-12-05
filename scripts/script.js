@@ -219,6 +219,20 @@ function update() {
 		scene.render();
 		//stats.update();
 	});
+	
+	var enableDebug = document.getElementById("enableDebug");
+	
+	if (enableDebug) {
+   		enableDebug.addEventListener("click", function () {
+			if (scene) {
+				if (scene.debugLayer.isVisible()) {
+					scene.debugLayer.hide();
+				} else {
+					scene.debugLayer.show();
+				}
+			}
+    		});
+	}
 
 	//A janela/canvas faz um resize dependendo do tamanho da tela
 	window.addEventListener('resize', function() {
