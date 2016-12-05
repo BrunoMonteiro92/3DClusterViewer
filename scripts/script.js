@@ -1,8 +1,8 @@
 // variaveis
 var matrix = [];
 var keyWord = '[ARESTAS]';
-//var stats;
 var gui;
+var scene;
 
 //Função para ler o arquivo
 function readSingleFile(evt) {
@@ -165,20 +165,12 @@ var initGui = function(axis, grid, cluster, background){
 		background.updateColor();
 	});
 }
-	
-/*var initStats = function(){
-	//if (stats)
-	//	stats = null;
-	stats = new Stats();
-	stats.setMode( 1 );
-	document.body.appendChild( stats.domElement );
-}*/
 
 function update() {
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
 		//Cria a cena
-		var scene = new BABYLON.Scene(engine);
+		scene = new BABYLON.Scene(engine);
 		//scene.debugLayer.show();
 
 		//Cria uma camera e seta a posição da mesma
@@ -212,7 +204,7 @@ function update() {
 	}
 	
 	//Chama função que cria a cena
-	var scene = createScene();
+	scene = createScene();
 
 	//Roda o loop de renderização
 	engine.runRenderLoop(function() {
