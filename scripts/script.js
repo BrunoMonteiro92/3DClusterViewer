@@ -195,9 +195,6 @@ function update() {
 
 		//Inicializa o dat.GUI
 		initGui(axis, grid, cluster, background);
-		
-		//Inicializa o Stats
-		//initStats();
 
 		//Retorna a cena
 		return scene;
@@ -209,7 +206,6 @@ function update() {
 	//Roda o loop de renderização
 	engine.runRenderLoop(function() {
 		scene.render();
-		//stats.update();
 	});
 	
 	var enableDebug = document.getElementById("enableDebug");
