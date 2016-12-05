@@ -2,7 +2,6 @@ var canvas = document.getElementById("renderCanvas");
 
 var controlPanel = document.getElementById("controlPanel");
 var fullscreen = document.getElementById("fullscreen");
-var enableDebug = document.getElementById("enableDebug");
 var divFps = document.getElementById("fpsLabel");
 
 var engine = new BABYLON.Engine(canvas, true, { stencil: true });
@@ -21,18 +20,6 @@ if (clickableTag) {
             panelIsClosed = true;
             controlPanel.style.webkitTransform = "translateY(100px)";
             controlPanel.style.transform = "translateY(100px)";
-        }
-    });
-}
-
-if (enableDebug) {
-    enableDebug.addEventListener("click", function () {
-        if (scene) {
-            if (scene.debugLayer.isVisible()) {
-                scene.debugLayer.hide();
-            } else {
-                scene.debugLayer.show();
-            }
         }
     });
 }
