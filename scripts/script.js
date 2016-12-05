@@ -1,7 +1,7 @@
 // variaveis
 var matrix = [];
 var keyWord = '[ARESTAS]';
-var stats;
+//var stats;
 var gui;
 
 //Função para ler o arquivo
@@ -166,13 +166,13 @@ var initGui = function(axis, grid, cluster, background){
 	});
 }
 	
-var initStats = function(){
+/*var initStats = function(){
 	//if (stats)
 	//	stats = null;
 	stats = new Stats();
 	stats.setMode( 1 );
 	document.body.appendChild( stats.domElement );
-}
+}*/
 
 function update() {
 	//Função que cria a cena e retorna a mesma
@@ -205,7 +205,7 @@ function update() {
 		initGui(axis, grid, cluster, background);
 		
 		//Inicializa o Stats
-		initStats();
+		//initStats();
 
 		//Retorna a cena
 		return scene;
@@ -217,7 +217,7 @@ function update() {
 	//Roda o loop de renderização
 	engine.runRenderLoop(function() {
 		scene.render();
-		stats.update();
+		//stats.update();
 	});
 
 	//A janela/canvas faz um resize dependendo do tamanho da tela
