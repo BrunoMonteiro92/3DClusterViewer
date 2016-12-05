@@ -1,19 +1,153 @@
 html, body {
-  font-family: Arial;
-  font-weight: 8;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: fixed;
+    font-family: "Segoe WP", "Segoe UI", "Verdana", "Arial";
+    touch-action: none;
+    -ms-touch-action: none;
 }
 
 #renderCanvas {
-  width: 100%;
-  height: 100%;
-  touch-action: none;
+	width: 100%;
+	height: 100%;
+	touch-action: none;
 }
-#fileinput{
-  float: left;
-  z-index: 1;
+
+#enableDebug, #fullscreen, #fileinput{
+    width: 100px;
+    margin-left: 50px;
+}
+
+.buttonControlPanel {
+    height: 3em;
+    width: 17em;
+    margin: 5px 0px 5px 0px;
+    line-height: 2.2em;
+}
+
+.smallButtonControlPanel {
+	height: 2.2em;
+	width: 17em;
+	margin: 2px 0px 2px 0px;
+}
+
+    .smallButtonControlPanel.pushed {
+		border: 2px solid #00008b;
+    }
+
+.buttonImg {
+	height: 32px;
+	width: 32px;
+	float: left;
+}
+
+button {
+    border: 1px solid #888888;
+    background-color: #DEDEDE;
+    color: #888888;
+}
+
+    button:hover {
+		background-color: #EEEEEE;
+    }
+
+    button:active {
+		transform: scale(0.98);
+		-webkit-transform: scale(0.98);
+    }
+	
+
+#controlPanel {
+	position: absolute;
+	height: 130px;
+	bottom: -30px;
+	width: 200px;
+	left: 50%;
+	margin-left: -110px;
+	z-index: 10;
+	transition: transform 0.25s ease-in-out;
+	transform: translate(0px, 100px);
+	-webkit-transition: -webkit-transform 0.25s ease-in-out;
+	-webkit-transform: translate(0px, 100px);
+}
+
+.tag {
+	position: absolute;
+	background-color: #EEEEEE;
+	height: 40px;
+	width: 150px;
+	left: 50%;
+	padding: 5px;
+	color: #888888;
+	font-size: 18px;
+	margin-left: -70px;
+	text-align: center;
+	top: -40px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+}
+
+#controlsZone {
+	width: 100%;
+	height: 100%;
+	background-color: #EEEEEE;
+	color: #888888;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	padding: 10px;
+}
+
+#clickableTag {
+	cursor: hand;
+	background-color: transparent;
+}
+
+label.uploadLabel input[type="file"] {
+	position: fixed;
+	display: none;
+}
+
+.uploadLabel {
+    margin-left: 50px;
+    border: 1px solid #888888;
+    background-color: #DEDEDE;
+    color: #888888;
+	padding: 0.5px 12.5px;
+	font-size: 80%;
+}
+
+	.uploadLabel:hover {
+		background-color: #EEEEEE;
+	}
+	.uploadLabel:active {
+		transform: scale(0.98);
+		-webkit-transform: scale(0.98);
+	}
+
+#fpsLabel {
+    position: absolute;
+    top: 30px;
+	left: 30px;
+    cursor: default;
+}
+
+.label {
+	display:inline-block;
+	padding:2px 4px;
+	font-size:11.844px;
+	font-weight:bold;
+	line-height:14px;
+	color:#fff;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.25);
+	white-space:nowrap;
+	vertical-align:baseline;
+	background-color:#999;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	position:relative;
+	top:-1px;
 }
