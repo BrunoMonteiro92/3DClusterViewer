@@ -73,8 +73,8 @@ button {
 	-webkit-transition: -webkit-transform 0.25s ease-in-out;
 	-webkit-transform: translate(0px, 100px);
 	display: flex;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .tag {
@@ -91,8 +91,8 @@ button {
 	border-top-left-radius: 10px 10px;
 	border-top-right-radius: 10px 10px;
 	display: flex;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 #controlsZone {
@@ -133,10 +133,10 @@ label.uploadLabel input[type="file"] {
 	}
 
 #fpsLabel {
-    position: absolute;
-    top: 30px;
+	position: absolute;
+	top: 70px;
 	left: 30px;
-    cursor: default;
+	cursor: default;
 }
 
 .label {
@@ -158,22 +158,22 @@ label.uploadLabel input[type="file"] {
 }
 
 #pagetitle {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 42px;
-  background-color: #111;
-  color: grey;
-  display: -webkit-flex;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 42px;
+	background-color: #111;
+	color: grey;
+	display: -webkit-flex;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
 }
 
 #pagetitle #maintitle {
-  font-size: 14pt;
-  margin-left: 30px;
+	font-size: 14pt;
+	margin-left: 30px;
 }
 
 .moveGUI {
