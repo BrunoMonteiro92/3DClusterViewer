@@ -7,6 +7,7 @@
 
 		<script src="http://www.babylonjs.com/babylon.js"></script>
 		<script src="http://babylonjs-playground.com/babylon.gridMaterial.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-compat/3.0.0-alpha1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
 		
 		<script type="text/javascript" src="scripts/generateAxis.js"></script>
@@ -22,6 +23,10 @@
 	</head>
 	<body>
 		<canvas id="renderCanvas" touch-action="none">"></canvas>
+		<div id="pagetitle">
+			<div id="maintitle">Visual 3D Cluster</div>
+		</div>
+		<div class = 'moveGUI'></div>
 		<span class="label" id="fpsLabel">FPS</span>
 		<!-- Menu -->
 		<div id="controlPanel">
