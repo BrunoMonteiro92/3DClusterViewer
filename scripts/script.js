@@ -164,6 +164,8 @@ var initGui = function(axis, grid, cluster, background){
 	folder.addColor(background, 'colorString').name("Background Color").onChange(function(){
 		background.updateColor();
 	});
+	gui.domElement.id = 'canvas';
+	var customContainer = $('.moveGUI').append($(gui.domElement));
 }
 
 var enableDebug = document.getElementById("enableDebug");
