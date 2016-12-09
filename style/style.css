@@ -156,3 +156,28 @@ label.uploadLabel input[type="file"] {
 	position:relative;
 	top:-1px;
 }
+
+#pagetitle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 42px;
+  background-color: #111;
+  color: grey;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#pagetitle #maintitle {
+  font-size: 14pt;
+  margin-left: 30px;
+}
+
+.moveGUI {
+	position: absolute;
+	top: 42px;
+	right: 10px;
+}
