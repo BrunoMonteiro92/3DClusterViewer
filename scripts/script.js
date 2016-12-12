@@ -3,6 +3,7 @@ var matrix = [];
 var keyWord = '[ARESTAS]';
 var gui;
 var scene;
+var customContainer;
 
 //Função para ler o arquivo
 function readSingleFile(evt) {
@@ -103,6 +104,9 @@ var initGui = function(axis, grid, cluster, background){
 		gui.destroy();
 	//Inicia
 	gui = new dat.GUI();
+	gui.domElement.style.marginTop = "42px";
+	gui.domElement.style.marginRight = "-16px";
+	
 	//Cria uma pasta
 	var folder = gui.addFolder('Axis Options');
 	//Mantem a pasta aberta no inicio
@@ -164,8 +168,6 @@ var initGui = function(axis, grid, cluster, background){
 	folder.addColor(background, 'colorString').name("Background Color").onChange(function(){
 		background.updateColor();
 	});
-	gui.domElement.id = 'canvas';
-	var customContainer = $('.moveGUI').append($(gui.domElement));
 }
 
 var enableDebug = document.getElementById("enableDebug");
@@ -210,6 +212,8 @@ function update() {
 
 		//Inicializa o dat.GUI
 		initGui(axis, grid, cluster, background);
+		/*gui.domElement.id = 'renderCanvas';
+		customContainer = $('.moveGUI').append($(gui.domElement));*/
 
 		//Retorna a cena
 		return scene;
