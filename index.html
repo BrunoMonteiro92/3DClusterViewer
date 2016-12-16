@@ -9,26 +9,28 @@
 		<script src="http://babylonjs-playground.com/babylon.gridMaterial.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-compat/3.0.0-alpha1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="style/dat-gui-swec.css">
 		
 		<script type="text/javascript" src="scripts/generateAxis.js"></script>
 		<script type="text/javascript" src="scripts/generateGrid.js"></script>
 		<script type="text/javascript" src="scripts/generateCluster.js"></script>
 		<script type="text/javascript" src="scripts/backgroundColor.js"></script>
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="style/custom.css">
-
+		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		
+		<link type="text/css" rel="stylesheet" href="style/custom.css">
+
 		<title>Visual 3D Cluster - Visualizador tridimensional de grafos
 			e clusters</title>
 
 	</head>
 	<body>
+		<!-- Bootstrap navbar --> 
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">App Name</a>
+					<a class="navbar-brand" href="#">3D Visual Cluster</a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li><div class=" btn btn-default navbar-btn">About</div></li>
@@ -45,11 +47,10 @@
 		
 		<canvas id="renderCanvas" touch-action="none"></canvas>
 		
+		<!-- FPS Label -->
 		<span class="label" id="fpsLabel">FPS</span>
 
 		<script type="text/javascript" src="scripts/index.js"></script>
-		
-		<!-- Scene -->
 		<script type="text/javascript" src="scripts/script.js" ></script>
 	</body>
 </html>
