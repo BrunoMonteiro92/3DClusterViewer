@@ -45,8 +45,8 @@ window.addEventListener('DOMContentLoaded', function() {
 var canvas = document.getElementById('renderCanvas');
 
 // load the 3D engine
-var engine = new BABYLON.Engine(canvas, true);
-//var engine = new BABYLON.Engine(canvas, false,{ antialias: false, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
+//var engine = new BABYLON.Engine(canvas, true);
+var engine = new BABYLON.Engine(canvas, false,{ antialias: true, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
 	
 //Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
 /*
@@ -104,8 +104,9 @@ var initGui = function(axis, grid, cluster, background){
 		gui.destroy();
 	//Inicia
 	gui = new dat.GUI();
-	gui.domElement.style.marginTop = "42px";
+	gui.domElement.style.marginTop = "50px";
 	gui.domElement.style.marginRight = "-16px";
+	gui.domElement.style.font = "Segoe WP";
 	
 	//Cria uma pasta
 	var folder = gui.addFolder('Axis Options');
@@ -171,18 +172,17 @@ var initGui = function(axis, grid, cluster, background){
 }
 
 var enableDebug = document.getElementById("enableDebug");
-	
-	if (enableDebug) {
-   		enableDebug.addEventListener("click", function () {
-			if (scene) {
-				if (scene.debugLayer.isVisible()) {
-					scene.debugLayer.hide();
-				} else {
-					scene.debugLayer.show();
-				}
+if (enableDebug) {
+	enableDebug.addEventListener("click", function () {
+		if (scene) {
+			if (scene.debugLayer.isVisible()) {
+				scene.debugLayer.hide();
+			} else {
+				scene.debugLayer.show();
 			}
-    		});
-	}
+		}
+	});
+}
 
 function update() {
 	//Função que cria a cena e retorna a mesma
@@ -200,9 +200,10 @@ function update() {
 		//Controle da camera
 		camera.attachControl(canvas, false);
 
-		//Cria a iluminação apontando para 0, 1, 0 (vindo do eixo y)
+		//Cria a iluminação
 		var light = new BABYLON.HemisphericLight('light1',
 				camera.position, scene);
+		light.specular = new BABYLON.Color3(0,0,0);
 		
 		//Chama as classes que desenham o eixo, grid e clusters
 		var axis = new generateAxis(scene);
