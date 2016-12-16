@@ -35,6 +35,11 @@ html, body {
 	top:-1px;
 }
 
+.navbar-inverse {
+	background-color: #000;
+	border-color: #222222;
+}
+
 .navbar-right {
 	margin-right: 5px;
 	margin-top: -1px;
