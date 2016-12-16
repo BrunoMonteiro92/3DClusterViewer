@@ -14,41 +14,41 @@
 		<script type="text/javascript" src="scripts/generateGrid.js"></script>
 		<script type="text/javascript" src="scripts/generateCluster.js"></script>
 		<script type="text/javascript" src="scripts/backgroundColor.js"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="style/custom.css">
 
-		<link rel="stylesheet" href="style/style.css" media="screen" title="no title" charset="utf-8">
-
+		
 		<title>Visual 3D Cluster - Visualizador tridimensional de grafos
 			e clusters</title>
 
 	</head>
 	<body>
-		<canvas id="renderCanvas" touch-action="none">"></canvas>
-		<div id="pagetitle">
-			<div id="maintitle">Visual 3D Cluster</div> 
-		</div>
-		<span class="label" id="fpsLabel">FPS</span>
-		<!-- Menu -->
-		<div id="controlPanel">
-			<div id="controlsZone">
-				<p>
-					<label class="uploadLabel">
-						<input id="fileinput" type="file"/>
-						<span>Upload file...</span>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">App Name</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><div class=" btn btn-default navbar-btn">About</div></li>
+				</ul>
+				<div class="btn btn-group">
+					<label class="btn btn-default btn-file navbar-bt">
+						Upload File <input id="fileinput" type="file" style="display: none;">
 					</label>
-				</p>
-				<p>
-					<button id="fullscreen">Fullscreen</button>
-				</p>
-				<p>
-					<button id="enableDebug">Debug</button>
-				</p>
+					<button type="button" id="fullscreen" class="btn btn-default navbar-bt">Fullscreen</button>
+					<button type="button" id="enableDebug" class="btn btn-default navbar-bt">Debug Layer</button>
+				</div>
 			</div>
-			<div class="tag">Menu</div>
-			<div class="tag" id="clickableTag"></div>
-		</div>
+		</nav>
 		
-		<!-- Menu control script -->
-		<script type="text/javascript" src="scripts/menu.js"></script>
+		<canvas id="renderCanvas" touch-action="none"></canvas>
+		
+		<span class="label" id="fpsLabel">FPS</span>
+
+		<script type="text/javascript" src="scripts/index.js"></script>
+		
 		<!-- Scene -->
 		<script type="text/javascript" src="scripts/script.js" ></script>
 	</body>
