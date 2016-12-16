@@ -1,0 +1,8 @@
+.dg .c input[type=text] {                                                       
+	font-size: 11px;
+	line-height:normal;
+} 
+
+.dg .c div {
+	box-sizing: content-box;
+}
