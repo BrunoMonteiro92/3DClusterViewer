@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<!-- <meta http-equiv="refresh" content="10" /> -->
 		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-
+		<link type="text/css" rel="stylesheet" href="style/dat-gui-custom.css">
+		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="style/custom.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="http://www.babylonjs.com/babylon.js"></script>
 		<script src="http://babylonjs-playground.com/babylon.gridMaterial.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-compat/3.0.0-alpha1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="style/dat-gui-custom.css">
 		
 		<script type="text/javascript" src="scripts/generateAxis.js"></script>
 		<script type="text/javascript" src="scripts/generateGrid.js"></script>
@@ -16,21 +19,18 @@
 		<script type="text/javascript" src="scripts/backgroundColor.js"></script>
 		
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		
-		<link type="text/css" rel="stylesheet" href="style/custom.css">
 
 		<title>Visual 3D Cluster - Visualizador tridimensional de grafos e clusters</title>
+
 	</head>
-	<body>
-		<!-- Bootstrap navbar --> 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+	<body>	
+  		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">3D Visual Cluster</a>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
-					<li><div class=" btn btn-default navbar-btn">About</div></li>
+					<li><div class=" btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">About</div></li>
 				</ul>
 				<div class="btn btn-group">
 					<label class="btn btn-default btn-file navbar-bt">
@@ -41,6 +41,21 @@
 				</div>
 			</div>
 		</nav>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">About</h4>
+					</div>
+					<div class="modal-body">
+						<p>Application Description</p>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<canvas id="renderCanvas" touch-action="none"></canvas>
 		
@@ -48,6 +63,6 @@
 		<span class="label" id="fpsLabel">FPS</span>
 
 		<script type="text/javascript" src="scripts/index.js"></script>
-		<script type="text/javascript" src="scripts/script.js" ></script>
+		<script type="text/javascript" src="scripts/script.js"></script>
 	</body>
 </html>
