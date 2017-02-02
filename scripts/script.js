@@ -169,7 +169,7 @@ var initGui = function(axis, grid, cluster, background){
 	});
 }
 
-var enableDebug = document.getElementById("enableDebug");
+/*var enableDebug = document.getElementById("enableDebug");
 if (enableDebug) {
 	enableDebug.addEventListener("click", function () {
 		if (scene) {
@@ -181,6 +181,7 @@ if (enableDebug) {
 		}
 	});
 }
+*/
 
 function update() {
 	//Função que cria a cena e retorna a mesma
