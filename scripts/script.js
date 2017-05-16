@@ -205,8 +205,11 @@ function update() {
 		light.specular = new BABYLON.Color3(0,0,0);
 		
 		//Chama as classes que desenham o eixo, grid e clusters
+		console.log("antes");
 		var axis = new generateAxis(scene);
+		console.log("axis");
 		var grid = new generateGrid(scene);
+		console.log("grid");
 		var cluster = new generateCluster(scene, matrix);
 		var background = new controlBackground(scene);
 
