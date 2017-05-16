@@ -12,7 +12,7 @@ generateGrid = function(scene){
 	this.scene = scene;
 	
 	//Instancia o material (textura) dos planos para ser um grid (GridMaterial é uma extensão do Babylon)
-	var groundMaterial = BABYLON.GridMaterial("this.groundMaterial", this.scene);
+	var groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
 	groundMaterial.gridRatio = 1;
 	groundMaterial.backFaceCulling = false;
 	groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
