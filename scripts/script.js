@@ -99,6 +99,7 @@ BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 
 //Função do DAT.GUI
 var initGui = function(axis, grid, cluster, background){
+	console.log("gui");
 	if (gui)
 		gui.destroy();
 	//Inicia
