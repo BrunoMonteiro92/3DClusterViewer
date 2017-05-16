@@ -12,13 +12,13 @@ generateGrid = function(scene){
 	this.scene = scene;
 	
 	//Instancia o material (textura) dos planos para ser um grid (GridMaterial é uma extensão do Babylon)
-	var groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
-	groundMaterial.gridRatio = 1;
-	groundMaterial.backFaceCulling = false;
-	groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
-	groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
-	groundMaterial.minorUnitVisibility = 0;
-	groundMaterial.opacity = this.gridOpacity;
+	this.groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
+	this.groundMaterial.gridRatio = 1;
+	this.groundMaterial.backFaceCulling = false;
+	this.groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
+	this.groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
+	this.groundMaterial.minorUnitVisibility = 0;
+	this.groundMaterial.opacity = this.gridOpacity;
 
 	//Cria os três planos e seta o material para ser grid (como se fosse uma textura)
 	this.groundXZ = BABYLON.Mesh.CreateGround("groundXZ", this.size,
@@ -41,13 +41,13 @@ generateGrid.prototype.updateGrid = function() {
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 };
 
-/*generateGrid.prototype.updateGridOpacity = function() {
+generateGrid.prototype.updateGridOpacity = function() {
 	this.groundMaterial.opacity = this.gridOpacity;
 };
 
 generateGrid.prototype.updateRatio = function() {
 	this.groundMaterial.gridRatio = this.ratio;
-};*/
+};
 
 //Métod para exibir ou não o plano XZ, usado no dat.GUI
 generateGrid.prototype.showGroundXZ = function() {
