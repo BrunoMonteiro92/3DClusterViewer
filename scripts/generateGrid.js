@@ -40,6 +40,7 @@ generateGrid.prototype.updateGrid = function() {
 	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.ratio = this.size/2000;
+	console.log(this.ratio);
 };
 
 generateGrid.prototype.updateGridOpacity = function() {
