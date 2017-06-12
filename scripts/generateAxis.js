@@ -16,7 +16,7 @@ generateAxis = function(scene){
 	//Na cor vermelha
 	this.axisX.color = BABYLON.Color3.Red();
 	this.axisX.enableEdgesRendering();
-	this.axisX.edgesWidth = 50.0;
+	this.axisX.edgesWidth = 100.0;
 	this.axisX.edgesColor = new BABYLON.Color4(1, 0, 0, 1);
 	
 	//Desenha eixo Y
@@ -26,7 +26,7 @@ generateAxis = function(scene){
 	//Na cor verde
 	this.axisY.color = BABYLON.Color3.Green();
 	this.axisY.enableEdgesRendering();
-	this.axisY.edgesWidth = 50.0;
+	this.axisY.edgesWidth = 100.0;
 	this.axisY.edgesColor = new BABYLON.Color4(0, 1, 0, 1);
 	
 	//Desenha eixo Z
@@ -36,7 +36,7 @@ generateAxis = function(scene){
 	//Na cor azul
 	this.axisZ.color = BABYLON.Color3.Blue();
 	this.axisZ.enableEdgesRendering();
-	this.axisZ.edgesWidth = 50.0;
+	this.axisZ.edgesWidth = 100.0;
 	this.axisZ.edgesColor = new BABYLON.Color4(0, 0, 1, 1);
 
 };
