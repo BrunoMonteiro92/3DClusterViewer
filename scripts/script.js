@@ -193,9 +193,9 @@ function update() {
 		//Cria uma camera e seta a posição da mesma
 		var camera = new BABYLON.ArcRotateCamera("camera1",
 				Math.PI / 12, 5 * Math.PI / 20, 10 * Math.PI,
-				new BABYLON.Vector3(100, 100, 100), scene);
+				BABYLON.Vector3.Zero(), scene);
 		//Seta a camera para olhar para a origem
-		camera.setTarget(BABYLON.Vector3.Zero());
+		//camera.setTarget(BABYLON.Vector3.Zero());
 
 		//Controle da camera
 		camera.attachControl(canvas, false);
