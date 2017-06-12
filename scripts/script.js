@@ -194,7 +194,8 @@ function update() {
 		var camera = new BABYLON.ArcRotateCamera("camera1",
 				Math.PI / 12, 5 * Math.PI / 20, 10 * Math.PI,
 				BABYLON.Vector3.Zero(), scene);
-		camera.setPosition(new BABYLON.Vector3(100, 100, 100));
+		camera.setPosition(new BABYLON.Vector3(200, 200, 200));
+		console.log(camera.setPosition());
 		//Seta a camera para olhar para a origem
 		//camera.setTarget(BABYLON.Vector3.Zero());
 
@@ -207,11 +208,8 @@ function update() {
 		light.specular = new BABYLON.Color3(0,0,0);
 		
 		//Chama as classes que desenham o eixo, grid e clusters
-		console.log("antes");
 		var axis = new generateAxis(scene);
-		console.log("axis");
 		var grid = new generateGrid(scene);
-		console.log("grid");
 		var cluster = new generateCluster(scene, matrix);
 		var background = new controlBackground(scene);
 
