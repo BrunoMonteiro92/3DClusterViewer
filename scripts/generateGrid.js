@@ -39,7 +39,7 @@ generateGrid.prototype.updateGrid = function() {
 	this.groundXZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
-	this.groundMaterial.gridRatio = this.size/2000;
+	this.groundMaterial.gridRatio = this.size/this.size;
 	console.log(this.groundMaterial.gridRatio);
 };
 
