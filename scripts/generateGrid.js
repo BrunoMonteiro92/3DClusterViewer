@@ -13,7 +13,7 @@ generateGrid = function(scene){
 	
 	//Instancia o material (textura) dos planos para ser um grid (GridMaterial é uma extensão do Babylon)
 	this.groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
-	this.groundMaterial.gridRatio = 1;
+	this.groundMaterial.gridRatio = this.ratio;
 	this.groundMaterial.backFaceCulling = false;
 	this.groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
 	this.groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
@@ -39,6 +39,7 @@ generateGrid.prototype.updateGrid = function() {
 	this.groundXZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
 	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
+	this.ratio = this.size/2000;
 };
 
 generateGrid.prototype.updateGridOpacity = function() {
