@@ -195,10 +195,7 @@ function update() {
 				Math.PI / 12, 5 * Math.PI / 20, 10 * Math.PI,
 				BABYLON.Vector3.Zero(), scene);
 		camera.setPosition(new BABYLON.Vector3(300, 200, 300));
-		camera.wheelPrecision = 0.1;
-		//console.log(camera.setPosition());
-		//Seta a camera para olhar para a origem
-		//camera.setTarget(BABYLON.Vector3.Zero());
+		camera.wheelPrecision = 0.9;
 
 		//Controle da camera
 		camera.attachControl(canvas, false);
