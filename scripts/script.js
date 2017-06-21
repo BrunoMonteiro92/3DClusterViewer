@@ -17,7 +17,7 @@ function readSingleFile(evt) {
 			var pastKey = false;
 			contents.split('\n').forEach(function(line, i) {
 				if (pastKey) {
-					var vals = line.trim().split(' ');
+					var vals = line.trim().split(" +");
 					console.log(vals);
 					if (vals.length > 2) {
 						matrix.push(vals);
