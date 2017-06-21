@@ -21,6 +21,10 @@ function readSingleFile(evt) {
 					if (vals.length > 2) {
 						matrix.push(vals);
 					}
+					var valsEsp = line.trim().split('  ');
+					if (valsEsp.length > 2) {
+						matrix.push(valsEsp);
+					}
 				}
 				if (line.trim() === keyWord) {
 					pastKey = true;
