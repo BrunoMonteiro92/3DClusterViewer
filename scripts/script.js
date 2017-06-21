@@ -17,13 +17,9 @@ function readSingleFile(evt) {
 			var pastKey = false;
 			contents.split('\n').forEach(function(line, i) {
 				if (pastKey) {
-					var vals = line.trim().split(' ');
+					var vals = line.trim().split(/ |  /);
 					if (vals.length > 2) {
 						matrix.push(vals);
-					}
-					var valsEsp = line.trim().split('  ');
-					if (valsEsp.length > 2) {
-						matrix.push(valsEsp);
 					}
 				}
 				if (line.trim() === keyWord) {
