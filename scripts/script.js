@@ -18,7 +18,6 @@ function readSingleFile(evt) {
 			contents.split('\n').forEach(function(line, i) {
 				if (pastKey) {
 					var vals = line.trim().split(/\ +/);
-					console.log(vals);
 					if (vals.length > 2) {
 						matrix.push(vals);
 					}
@@ -100,7 +99,6 @@ BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
 
 //Função do DAT.GUI
 var initGui = function(axis, grid, cluster, background){
-	console.log("gui");
 	if (gui)
 		gui.destroy();
 	//Inicia
