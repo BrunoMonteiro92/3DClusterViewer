@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html>
-	<head>
+    <head>
+        <!-- <meta http-equiv="refresh" content="10" /> -->
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+        <link type="text/css" rel="stylesheet" href="style/dat-gui-custom.css">
+        <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="style/custom.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.4.0/babylon.js"></script>
+        <script src="scripts/babylon.gridMaterial.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+        
+        <script type="text/javascript" src="scripts/generateAxis.js"></script>
+        <script type="text/javascript" src="scripts/generateGrid.js"></script>
+        <script type="text/javascript" src="scripts/generateCluster.js"></script>
+        <script type="text/javascript" src="scripts/backgroundColor.js"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		<!-- <meta http-equiv="refresh" content="10" /> -->
-		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-		<link type="text/css" rel="stylesheet" href="style/dat-gui-custom.css">
-		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link type="text/css" rel="stylesheet" href="style/custom.css">
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.4.0/babylon.js"></script>
-		<script src="scripts/babylon.gridMaterial.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
-		
-		<script type="text/javascript" src="scripts/generateAxis.js"></script>
-		<script type="text/javascript" src="scripts/generateGrid.js"></script>
-		<script type="text/javascript" src="scripts/generateCluster.js"></script>
-		<script type="text/javascript" src="scripts/backgroundColor.js"></script>
-		
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>3D Visual Graph - Visualizador tridimensional de grafos e clusters</title>
 
-		<title>3D Visual Graph - Visualizador tridimensional de grafos e clusters</title>
+    </head>
+    <body>  
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">3D Visual Graph</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><div class=" btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">About</div></li>
+                </ul>
+                <div class="btn btn-group">
+                    <label class="btn btn-default btn-file navbar-bt">
+                        Upload File <input id="fileinput" type="file" style="display: none;">
+                    </label>
+                    <button type="button" id="fullscreen" class="btn btn-default navbar-bt">Fullscreen</button>
+                    <!-- button type="button" id="enableDebug" class="btn btn-default navbar-bt">Debug Layer</button -->
+                </div>
+            </div>
+        </nav>
 
-	</head>
-	<body>	
-  		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">3D Visual Graph</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-					<li><div class=" btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">About</div></li>
-				</ul>
-				<div class="btn btn-group">
-					<label class="btn btn-default btn-file navbar-bt">
-						Upload File <input id="fileinput" type="file" style="display: none;">
-					</label>
-					<button type="button" id="fullscreen" class="btn btn-default navbar-bt">Fullscreen</button>
-					<!-- button type="button" id="enableDebug" class="btn btn-default navbar-bt">Debug Layer</button -->
-				</div>
-			</div>
-		</nav>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">About</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <b>3D Visual Graph</b> Molvwr WebGL graph and cluster viewer, built with Babylon.js.<br>
+                            This application is used for viewing three-dimensional graphs and clusters using the default file listed below:<br>
+                            <ul>
+                                <li><iframe src="/sample/kruskalgraph.s3d"></iframe>3D Graph generated with Kruskal Algorithm;</li>
+                                <li><iframe src="/sample/jmeanscluster.s3d">3D Cluster generated with J-Means Algorithm.</iframe></li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                       <p><b>Developed by:</b> Bruno Marques Monteiro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id="renderCanvas" touch-action="none"></canvas>
+        
+        <!-- FPS Label -->
+        <span class="label" id="fpsLabel">FPS</span>
 
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">About</h4>
-					</div>
-					<div class="modal-body">
-						<p>Application Description</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<canvas id="renderCanvas" touch-action="none"></canvas>
-		
-		<!-- FPS Label -->
-		<span class="label" id="fpsLabel">FPS</span>
-
-		<script type="text/javascript" src="scripts/index.js"></script>
-		<script type="text/javascript" src="scripts/script.js"></script>
-	</body>
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <script type="text/javascript" src="scripts/script.js"></script>
+    </body>
 </html>
