@@ -1,3 +1,3 @@
-# brunex92.github.io
+# 3D Visual Graph
 
-Visualizador de Grafos e Clusters tridimensionais utilizando a API de Javascript Babylon.JS
+Visualizador web de Grafos e Clusters tridimensionais utilizando a API de Javascript Babylon.JS
