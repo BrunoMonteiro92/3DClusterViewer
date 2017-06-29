@@ -51,12 +51,15 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            <b>3D Visual Graph</b> Molvwr WebGL graph and cluster viewer, built with Babylon.js.<br>
+                            <b>3D Visual Graph</b> is a WebGL graph and cluster viewer, built with Babylon.js.<br>
                             This application is used for viewing three-dimensional graphs and clusters using the default file listed below:<br>
                             <ul>
                                 <li><a href="/3DClusterViewer/sample/kruskalgraph.s3d">3D Graph generated with Kruskal Algorithm;</li></a>
+                                <li><a href="/3DClusterViewer/sample/kmeanscluster.s3d">3D Cluster generated with K-Means Algorithm;</a></li>
                                 <li><a href="/3DClusterViewer/sample/jmeanscluster.s3d">3D Cluster generated with J-Means Algorithm.</a></li>
                             </ul>
+
+                            Every file follows the same pattern, using the first three coordinates (x, y, z) as the structure vertex, the next three coordinates as its centroid (for clusters) and its connected vertex (for graphs). The last three data (red, green, blue) are the color used on the structure.
                         </p>
                     </div>
                     <div class="modal-footer">
