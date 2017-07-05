@@ -1,40 +1,74 @@
 // variaveis
-var matrix = [];
+var verticesArray = [];
+var linkArray = [];
 var keyWord = '[ARESTAS]';
 var gui;
 var scene;
+var matrix = [];
+var isXML = false;
 
-//Função para ler o arquivo
-function readSingleFile(evt) {
-	var f = evt.target.files[0];
-
-	if (f) {
-		matrix = [];
-		var r = new FileReader();
-		var contents = 'empty';
-		r.onload = function(e) {
-			contents = e.target.result;
-			var pastKey = false;
-			contents.split('\n').forEach(function(line, i) {
-				if (pastKey) {
-					var vals = line.trim().split(/\ +/);
-					if (vals.length > 2) {
-						matrix.push(vals);
-					}
-				}
-				if (line.trim() === keyWord) {
-					pastKey = true;
-				}
-			})
-			update();
+function readFile(evt) {
+	var file = evt.target.files[0];
+	var name = file.name;
+	var ext = name.replace(/^.*\./, '');
+	
+	if (ext === 'xml'){
+		isXML = true;
+		verticesArray = [];
+		linkArray = [];
+		if (file){
+			var reader = new FileReader();
+			reader.onload = function() {
+				
+				var parsed = new DOMParser().parseFromString(this.result, "text/xml");
+				
+				var nodes = Array.prototype.slice.call(parsed.querySelectorAll("node"));
+				var nodeCol = ["id", "coordx", "coordy", "coordz", "r", "g", "b"];
+				
+				verticesArray = nodes.map(n => nodeCol.map(v => n.getAttribute(v)));
+				
+				var links = Array.prototype.slice.call(parsed.querySelectorAll("link"));
+				var linkCol = ["origin", "destination", "r", "g", "b"];
+				
+				linkArray = links.map(m => linkCol.map(l => m.getAttribute(l)));
+				
+				update();
+			}
+			
+			reader.readAsText(file);
+		} else {
+			alert("Failed");
 		}
-		r.readAsText(f);
 	} else {
-		alert("Failed");
+		if (file) {
+			isXML = false;
+			matrix = [];
+			var reader = new FileReader();
+			var contents = 'empty';
+			reader.onload = function(e) {
+				contents = e.target.result;
+				var pastKey = false;
+				contents.split('\n').forEach(function(line, i) {
+					if (pastKey) {
+						var vals = line.trim().split(/\ +/);
+						if (vals.length > 2) {
+							matrix.push(vals);
+						}
+					}
+					if (line.trim() === keyWord) {
+						pastKey = true;
+					}
+				})
+				update();
+			}
+			reader.readAsText(file);
+		} else {
+			alert("Failed");
+		}
 	}
 }
 
-document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+document.getElementById('fileinput').addEventListener('change', readFile, false);
 
 window.addEventListener('DOMContentLoaded', function() {
 	update();
@@ -46,56 +80,6 @@ var canvas = document.getElementById('renderCanvas');
 // load the 3D engine
 //var engine = new BABYLON.Engine(canvas, true);
 var engine = new BABYLON.Engine(canvas, false,{ antialias: true, preserveDrawingBuffer: true, limitDeviceRatio:1.0, generateDepthBuffer: false, generateMipMaps: false, samplingMode: 2 },false);
-	
-//Função que sobrescreve a função de câmera para que o zoom passe da origem sem inverter a mesma
-/*
-BABYLON.ArcRotateCamera.prototype._getViewMatrix = function() {
-	// Compute
-	var cosa = Math.cos(this.alpha);
-	var sina = Math.sin(this.alpha);
-	var cosb = Math.cos(this.beta);
-	var sinb = Math.sin(this.beta);
-
-	if (sinb === 0) {
-		sinb = 0.0001;
-	}
-
-	var target = this._getTargetPosition();
-	target.addToRef(new BABYLON.Vector3(this.radius * cosa * sinb,
-			this.radius * cosb, this.radius * sina * sinb),
-			this._newPosition);
-	if (this.getScene().collisionsEnabled && this.checkCollisions) {
-		this._collider.radius = this.collisionRadius;
-		this._newPosition.subtractToRef(this.position,
-				this._collisionVelocity);
-		this._collisionTriggered = true;
-		this.getScene().collisionCoordinator.getNewPosition(
-				this.position, this._collisionVelocity,
-				this._collider, 3, null,
-				this._onCollisionPositionChange, this.uniqueId);
-	} else {
-		this.position.copyFrom(this._newPosition);
-		var up = this.upVector;
-		if (this.allowUpsideDown && this.beta < 0) {
-			up = up.clone();
-			up = up.negate();
-		}
-		if (this.radius < 0) {
-			var vec = this.position.subtract(target);
-			vec.normalize();
-
-			BABYLON.Matrix.LookAtLHToRef(this.position,
-					this.position.add(vec), up, this._viewMatrix);
-		} else {
-			BABYLON.Matrix.LookAtLHToRef(this.position, target, up,
-					this._viewMatrix);
-		}
-		this._viewMatrix.m[12] += this.targetScreenOffset.x;
-		this._viewMatrix.m[13] += this.targetScreenOffset.y;
-	}
-	return this._viewMatrix;
-};
-*/
 
 //Função do DAT.GUI
 var initGui = function(axis, grid, cluster, background){
@@ -169,20 +153,6 @@ var initGui = function(axis, grid, cluster, background){
 	});
 }
 
-/*var enableDebug = document.getElementById("enableDebug");
-if (enableDebug) {
-	enableDebug.addEventListener("click", function () {
-		if (scene) {
-			if (scene.debugLayer.isVisible()) {
-				scene.debugLayer.hide();
-			} else {
-				scene.debugLayer.show();
-			}
-		}
-	});
-}
-*/
-
 function update() {
 	//Função que cria a cena e retorna a mesma
 	var createScene = function() {
@@ -207,7 +177,11 @@ function update() {
 		//Chama as classes que desenham o eixo, grid e clusters
 		var axis = new generateAxis(scene);
 		var grid = new generateGrid(scene);
-		var cluster = new generateCluster(scene, matrix);
+		if (isXML){
+			var cluster = new generateClusterXML(scene, verticesArray, linkArray);
+		} else { 
+			var cluster = new generateCluster(scene, matrix);
+		}
 		var background = new controlBackground(scene);
 
 		//Inicializa o dat.GUI
