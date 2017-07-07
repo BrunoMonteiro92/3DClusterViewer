@@ -25,12 +25,20 @@ function readFile(evt) {
 				var nodes = Array.prototype.slice.call(parsed.querySelectorAll("node"));
 				var nodeCol = ["id", "coordx", "coordy", "coordz", "r", "g", "b"];
 				
-				verticesArray = nodes.map(n => nodeCol.map(v => n.getAttribute(v)));
+				verticesArray = nodes.map(function (n){
+					return nodeCol.map(function (v){
+						return n.getAttribute(v);
+					})
+				})
 				
 				var links = Array.prototype.slice.call(parsed.querySelectorAll("link"));
 				var linkCol = ["origin", "destination", "r", "g", "b"];
 				
-				linkArray = links.map(m => linkCol.map(l => m.getAttribute(l)));
+				linkArray = links.map(function (m){
+					return linkCol.map(function (l){
+						return m.getAttribute(l);
+					})
+				})
 				
 				update();
 			}
@@ -95,7 +103,7 @@ var initGui = function(axis, grid, cluster, background){
 	//Mantem a pasta aberta no inicio
 	folder.open();
 	//Adiciona à pasta as opções
-	folder.add(axis, 'size', 10, 1000).name("Axis size").step(10).onChange(function(){
+	folder.add(axis, 'size', 10, 2000).name("Axis size").step(10).onChange(function(){
 		axis.updateAxis();
 	});
 	folder.add(axis, 'displayAxisX').name("Show axis X").onChange(function(){
@@ -113,7 +121,7 @@ var initGui = function(axis, grid, cluster, background){
 	//Mantem a pasta aberta no inicio
 	folder.open();
 	//Adiciona à pasta as opções
-	folder.add(grid, 'size', 20, 2000).name("Plane size").step(20).onChange(function(){
+	folder.add(grid, 'size', 20, 4000).name("Plane size").step(20).onChange(function(){
 		grid.updateGrid();
 	});
 	folder.add(grid, 'displayGroundXZ').name('Show XZ plane').onChange(function(){
