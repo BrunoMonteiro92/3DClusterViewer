@@ -3,9 +3,9 @@
 //Construtor
 generateGrid = function(scene){
 	//Parâmetros para serem usados nos métodos
-	this.size = 200;
-	this.gridOpacity = 0.5;
-	this.ratio = 1;
+	this.size = 1000;
+	this.gridOpacity = 0.3;
+	//this.ratio = 1;
 	this.displayGroundXZ = true;
 	this.displayGroundYZ = true;
 	this.displayGroundXY = true;
@@ -13,7 +13,7 @@ generateGrid = function(scene){
 	
 	//Instancia o material (textura) dos planos para ser um grid (GridMaterial é uma extensão do Babylon)
 	this.groundMaterial = new BABYLON.GridMaterial("this.groundMaterial", this.scene);
-	//this.groundMaterial.gridRatio = 1;
+	this.groundMaterial.gridRatio = 3;
 	this.groundMaterial.backFaceCulling = false;
 	this.groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
 	this.groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
@@ -36,11 +36,9 @@ generateGrid = function(scene){
 
 //Métod para aumentar e diminuir o tamanho dos planos, usado no dat.GUI
 generateGrid.prototype.updateGrid = function() {
-	this.groundXZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
-	this.groundYZ.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
-	this.groundXY.scaling = new BABYLON.Vector3(this.size/200, this.size/200, this.size/200);
-	this.groundMaterial.gridRatio = this.size/this.size;
-	console.log(this.groundMaterial.gridRatio);
+	this.groundXZ.scaling = new BABYLON.Vector3(this.size/1000, this.size/1000, this.size/1000);
+	this.groundYZ.scaling = new BABYLON.Vector3(this.size/1000, this.size/1000, this.size/1000);
+	this.groundXY.scaling = new BABYLON.Vector3(this.size/1000, this.size/1000, this.size/1000);
 };
 
 generateGrid.prototype.updateGridOpacity = function() {
