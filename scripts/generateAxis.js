@@ -3,7 +3,7 @@
 //Construtor
 generateAxis = function(scene){
 	//Parâmetros para os demais métodos
-	this.size = 100;
+	this.size = 500;
 	this.displayAxisX = true;
 	this.displayAxisY = true;
 	this.displayAxisZ = true;
@@ -16,7 +16,7 @@ generateAxis = function(scene){
 	//Na cor vermelha
 	this.axisX.color = BABYLON.Color3.Red();
 	this.axisX.enableEdgesRendering();
-	this.axisX.edgesWidth = 100.0;
+	this.axisX.edgesWidth = 200.0;
 	this.axisX.edgesColor = new BABYLON.Color4(1, 0, 0, 1);
 	
 	//Desenha eixo Y
@@ -26,7 +26,7 @@ generateAxis = function(scene){
 	//Na cor verde
 	this.axisY.color = BABYLON.Color3.Green();
 	this.axisY.enableEdgesRendering();
-	this.axisY.edgesWidth = 100.0;
+	this.axisY.edgesWidth = 200.0;
 	this.axisY.edgesColor = new BABYLON.Color4(0, 1, 0, 1);
 	
 	//Desenha eixo Z
@@ -36,16 +36,16 @@ generateAxis = function(scene){
 	//Na cor azul
 	this.axisZ.color = BABYLON.Color3.Blue();
 	this.axisZ.enableEdgesRendering();
-	this.axisZ.edgesWidth = 100.0;
+	this.axisZ.edgesWidth = 200.0;
 	this.axisZ.edgesColor = new BABYLON.Color4(0, 0, 1, 1);
 
 };
 
 //Métod para aumentar e diminuir os eixos, usado no dat.GUI
 generateAxis.prototype.updateAxis = function() {
-	this.axisX.scaling.x = this.size/100;
-	this.axisY.scaling.y = this.size/100;
-	this.axisZ.scaling.z = this.size/100;
+	this.axisX.scaling.x = this.size/500;
+	this.axisY.scaling.y = this.size/500;
+	this.axisZ.scaling.z = this.size/500;
 };
 
 //Métod para exibir ou não o eixo X, usado no dat.GUI
