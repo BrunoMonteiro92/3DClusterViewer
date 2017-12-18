@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <meta http-equiv="refresh" content="10" /> -->
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
         <link type="text/css" rel="stylesheet" href="style/dat-gui-custom.css">
         <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,17 +8,18 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.4.0/babylon.js"></script>
-        <script src="scripts/babylon.gridMaterial.js"></script>
+        <script src="js/babylon.gridMaterial.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
 
-        <script type="text/javascript" src="scripts/generateAxis.js"></script>
-        <script type="text/javascript" src="scripts/generateGrid.js"></script>
-        <script type="text/javascript" src="scripts/generateCluster.js"></script>
-        <script type="text/javascript" src="scripts/backgroundColor.js"></script>
+        <script type="text/javascript" src="js/generateAxis.js"></script>
+        <script type="text/javascript" src="js/generateGrid.js"></script>
+        <script type="text/javascript" src="js/generateCluster.js"></script>
+		<script type="text/javascript" src="js/generateClusterXML.js"></script>
+        <script type="text/javascript" src="js/backgroundColor.js"></script>
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>3D Visual Graph - Visualizador tridimensional de grafos e clusters</title>
+        <title>3D Visual Graph - Tridimensional viewer for graphs and clusters</title>
 
     </head>
     <body>  
@@ -36,7 +36,6 @@
                         Upload File <input id="fileinput" type="file" style="display: none;">
                     </label>
                     <button type="button" id="fullscreen" class="btn btn-default navbar-bt">Fullscreen</button>
-                    <!-- button type="button" id="enableDebug" class="btn btn-default navbar-bt">Debug Layer</button -->
                 </div>
             </div>
         </nav>
@@ -54,12 +53,17 @@
                             <b>3D Visual Graph</b> is a WebGL graph and cluster viewer, built with Babylon.js.<br>
                             This application is used for viewing three-dimensional graphs and clusters using the default file listed below:<br>
                             <ul>
-                                <li><a href="/3DClusterViewer/sample/kruskalgraph.s3d">3D Graph generated with Kruskal Algorithm;</li></a>
-                                <li><a href="/3DClusterViewer/sample/kmeanscluster.s3d">3D Cluster generated with K-Means Algorithm;</a></li>
-                                <li><a href="/3DClusterViewer/sample/jmeanscluster.s3d">3D Cluster generated with J-Means Algorithm.</a></li>
+                                <li>[.S3D] <a href="sample/kruskalgraph.s3d">3D Graph generated using Kruskal Algorithm;</li></a>
+                                <li>[.S3D] <a href="sample/kmeanscluster.s3d">3D Cluster generated using K-Means Algorithm;</a></li>
+                                <li>[.S3D] <a href="sample/jmeanscluster.s3d">3D Cluster generated using J-Means Algorithm.</a></li>
+								<br>
+								<li>[.XML] <a href="sample/kruskalgraph.xml">3D Graph generated using Kruskal Algorithm;</li></a>
+								<li>[.XML] <a href="sample/kruskalgraphpath.xml">3D Graph using customized path;</li></a>
+								<li>[.XML] <a href="sample/kmeanscluster.xml">3D Cluster generated using K-Means Algorithm.</li></a>
                             </ul>
 
-                            Every file follows the same pattern, using the first three coordinates (x, y, z) as the structure vertex, the next three coordinates as its centroid (for clusters) and its connected vertex (for graphs). The last three data (red, green, blue) are the color used on the structure.
+                            Every <b>.s3d</b> file follows the same pattern, using the first three coordinates (x, y, z) as the structure vertex, the next three coordinates as its centroid (for clusters) and its connected vertex (for graphs). The last three data (red, green, blue) are the color used on the structure.<br>
+							The <b>.xml</b> file follows a different pattern, where all the vertex are defined at the <b>&lt;VERTICES&gt;</b> tag, using the three coordinates (x, y, z), an ID for each one, and its color. The edges are defined at the <b>&lt;LINKS&gt;</b> tag, and uses the vertex ID to draw the edge between the two vertex, and uses its color.
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -74,7 +78,7 @@
         <!-- FPS Label -->
         <span class="label" id="fpsLabel">FPS</span>
 
-        <script type="text/javascript" src="scripts/index.js"></script>
-        <script type="text/javascript" src="scripts/script.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>
